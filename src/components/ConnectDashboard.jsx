@@ -246,7 +246,72 @@ export default function ConnectDashboard({ onChangeTab }) {
               </div>
             </div>
 
-            {/* Column 2: Live QR Code Badge & Scanner */}
+            {/* Column 2: Phone Shell Mockup (Middle) */}
+            <div className="flex items-center justify-center shrink-0">
+              <div className="w-[195px] h-[360px] bg-black rounded-[34px] p-1 shadow-xl border-2 border-slate-900 flex flex-col relative shrink-0">
+                {/* Inner screen content wrapper */}
+                <div className="flex-1 bg-white rounded-[28px] overflow-hidden flex flex-col justify-between relative shadow-inner">
+                  {/* Header */}
+                  <header className="bg-white border-b border-slate-105 px-3 pt-5 pb-1.5 flex items-center justify-between select-none z-10 shrink-0">
+                    <div className="flex items-center gap-1">
+                      <Menu className="size-3 text-slate-700" />
+                      <span className="font-montserrat font-bold tracking-widest text-[8px] text-teal-650">CIRCULAYO</span>
+                    </div>
+                    <span className="text-[7px] font-black text-slate-400">Vaillant</span>
+                  </header>
+
+                  {/* Scrollable Body */}
+                  <div className="flex-1 overflow-y-auto px-3 py-2 flex flex-col gap-2 scrollbar-none bg-slate-50/50">
+                    <div className="flex flex-col select-none">
+                      <h2 className="text-[10px] font-black font-montserrat tracking-tight text-slate-900">Celebrate!</h2>
+                      <p className="text-[7px] text-slate-405 mt-0.5 leading-normal">North Stand Refill hub is active. Scan your cup QR code to join in.</p>
+                    </div>
+
+                    {/* Large Counter Box */}
+                    <div className="bg-white border border-slate-150 p-2 rounded-xl flex flex-col items-center justify-center gap-0.5 shadow-2xs">
+                      <span className="text-lg font-black text-emerald-600 leading-none">12</span>
+                      <span className="text-[6px] text-slate-400 font-extrabold uppercase tracking-wider mt-0.5">cups recycled</span>
+                    </div>
+
+                    {/* Dual statistic cards */}
+                    <div className="grid grid-cols-2 gap-1.5">
+                      <div className="bg-white border border-slate-150 p-1.5 rounded-lg flex flex-col items-center">
+                        <span className="text-[10px] font-black text-slate-800">253</span>
+                        <span className="text-[5.5px] text-slate-400 font-bold uppercase">Points</span>
+                      </div>
+                      <div className="bg-white border border-slate-150 p-1.5 rounded-lg flex flex-col items-center">
+                        <span className="text-[10px] font-black text-slate-800">151</span>
+                        <span className="text-[5.5px] text-slate-400 font-bold uppercase">Offset</span>
+                      </div>
+                    </div>
+
+                    {/* Wicked Sing-Along event card */}
+                    <div className="border border-slate-150 rounded-lg overflow-hidden bg-white shadow-2xs flex flex-col shrink-0">
+                      <div className="h-14 w-full relative bg-slate-900 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/85 to-amber-950/85 z-10" />
+                        <div className="absolute inset-0 flex items-center justify-between px-3 z-20">
+                          <span className="text-[5.5px] text-emerald-400 font-black uppercase">Elphaba</span>
+                          <span className="text-[5.5px] text-pink-400 font-black uppercase">Glinda</span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=200" className="w-full h-full object-cover opacity-20 absolute" />
+                      </div>
+                      <div className="p-1.5 flex flex-col select-none">
+                        <span className="text-[7.5px] font-black text-slate-800 tracking-tight leading-tight">Wicked: Sing-Along</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Footer button */}
+                  <div className="p-2 border-t border-slate-100 bg-white shrink-0">
+                    <button className="w-full bg-emerald-600 text-white font-extrabold text-[8px] py-2 rounded-lg hover:bg-emerald-700 shadow-sm transition-all cursor-pointer text-center">
+                      Buy Tickets
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Column 3: Live QR Code Badge & Scanner (Right Side) */}
             <div className="bg-slate-50/80 border border-slate-200/80 rounded-2xl p-5 flex flex-col items-center justify-center gap-3.5 text-center shadow-2xs hover:border-slate-300 transition-colors">
               <div className="flex flex-col items-center gap-1">
                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Mobile Preview QR</span>
@@ -320,71 +385,6 @@ export default function ConnectDashboard({ onChangeTab }) {
               <span className="text-[10px] text-slate-400 font-semibold max-w-[180px]">
                 Point your mobile camera to launch the live preview on your phone
               </span>
-            </div>
-
-            {/* Column 3: Phone Shell Mockup */}
-            <div className="flex items-center justify-center shrink-0">
-              <div className="w-[195px] h-[360px] bg-black rounded-[34px] p-1 shadow-xl border-2 border-slate-900 flex flex-col relative shrink-0">
-                {/* Inner screen content wrapper */}
-                <div className="flex-1 bg-white rounded-[28px] overflow-hidden flex flex-col justify-between relative shadow-inner">
-                  {/* Header */}
-                  <header className="bg-white border-b border-slate-105 px-3 pt-5 pb-1.5 flex items-center justify-between select-none z-10 shrink-0">
-                    <div className="flex items-center gap-1">
-                      <Menu className="size-3 text-slate-700" />
-                      <span className="font-montserrat font-bold tracking-widest text-[8px] text-teal-650">CIRCULAYO</span>
-                    </div>
-                    <span className="text-[7px] font-black text-slate-400">Vaillant</span>
-                  </header>
-
-                  {/* Scrollable Body */}
-                  <div className="flex-1 overflow-y-auto px-3 py-2 flex flex-col gap-2 scrollbar-none bg-slate-50/50">
-                    <div className="flex flex-col select-none">
-                      <h2 className="text-[10px] font-black font-montserrat tracking-tight text-slate-900">Celebrate!</h2>
-                      <p className="text-[7px] text-slate-405 mt-0.5 leading-normal">North Stand Refill hub is active. Scan your cup QR code to join in.</p>
-                    </div>
-
-                    {/* Large Counter Box */}
-                    <div className="bg-white border border-slate-150 p-2 rounded-xl flex flex-col items-center justify-center gap-0.5 shadow-2xs">
-                      <span className="text-lg font-black text-emerald-600 leading-none">12</span>
-                      <span className="text-[6px] text-slate-400 font-extrabold uppercase tracking-wider mt-0.5">cups recycled</span>
-                    </div>
-
-                    {/* Dual statistic cards */}
-                    <div className="grid grid-cols-2 gap-1.5">
-                      <div className="bg-white border border-slate-150 p-1.5 rounded-lg flex flex-col items-center">
-                        <span className="text-[10px] font-black text-slate-800">253</span>
-                        <span className="text-[5.5px] text-slate-400 font-bold uppercase">Points</span>
-                      </div>
-                      <div className="bg-white border border-slate-150 p-1.5 rounded-lg flex flex-col items-center">
-                        <span className="text-[10px] font-black text-slate-800">151</span>
-                        <span className="text-[5.5px] text-slate-400 font-bold uppercase">Offset</span>
-                      </div>
-                    </div>
-
-                    {/* Wicked Sing-Along event card */}
-                    <div className="border border-slate-150 rounded-lg overflow-hidden bg-white shadow-2xs flex flex-col shrink-0">
-                      <div className="h-14 w-full relative bg-slate-900 flex items-center justify-center">
-                        <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/85 to-amber-950/85 z-10" />
-                        <div className="absolute inset-0 flex items-center justify-between px-3 z-20">
-                          <span className="text-[5.5px] text-emerald-400 font-black uppercase">Elphaba</span>
-                          <span className="text-[5.5px] text-pink-400 font-black uppercase">Glinda</span>
-                        </div>
-                        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=200" className="w-full h-full object-cover opacity-20 absolute" />
-                      </div>
-                      <div className="p-1.5 flex flex-col select-none">
-                        <span className="text-[7.5px] font-black text-slate-800 tracking-tight leading-tight">Wicked: Sing-Along</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Footer button */}
-                  <div className="p-2 border-t border-slate-100 bg-white shrink-0">
-                    <button className="w-full bg-emerald-600 text-white font-extrabold text-[8px] py-2 rounded-lg hover:bg-emerald-700 shadow-sm transition-all cursor-pointer text-center">
-                      Buy Tickets
-                    </button>
-                  </div>
-                </div>
-              </div>
             </div>
 
           </div>
