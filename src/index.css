@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #007bff;
+  --color-brand-green: #16a34a;
+  --color-brand-green-light: #dcfce7;
+  --color-brand-header: #2d2d2d;
+  --color-brand-dark: #0f172a;
+  --color-brand-slate: #64748b;
+  --color-brand-border: #e2e8f0;
+  --color-brand-bg: #f8fafc;
+  
+  --color-tutorial-bg: #18303d;
+  --color-tutorial-overlay: rgba(12, 25, 33, 0.72);
+  --color-tutorial-teal: #00d5be;
+  --color-tutorial-teal-dark: #0b4f4a;
+  --color-tutorial-card: rgba(20, 184, 166, 0.12);
+  --color-tutorial-border: rgba(0, 187, 167, 0.3);
+  
+  --font-sans: 'Source Sans Pro', 'Source Sans 3', sans-serif;
+  --font-montserrat: 'Source Sans Pro', 'Source Sans 3', sans-serif;
+  --animate-spin-slow: spin 15s linear infinite;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* Custom scrollbar for premium aesthetics */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Utility to hide scrollbars but maintain functionality */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+

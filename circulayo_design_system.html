@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Circulayo CMS - Design System</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Montserrat:wght@500;600;700&amp;family=Public+Sans:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e6e8f3",
+                        "on-primary-fixed-variant": "#004398",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#0059c7",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#a2befe",
+                        "surface": "#f9f9ff",
+                        "primary": "#0057c2",
+                        "on-tertiary-fixed-variant": "#7c2e00",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#001943",
+                        "tertiary": "#9e3d00",
+                        "on-surface": "#181c24",
+                        "tertiary-container": "#c64f00",
+                        "inverse-primary": "#afc6ff",
+                        "outline-variant": "#c1c6d7",
+                        "on-background": "#181c24",
+                        "surface-dim": "#d7d9e5",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#001943",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#d9e2ff",
+                        "inverse-on-surface": "#eef0fc",
+                        "surface-container-low": "#f1f3ff",
+                        "surface-variant": "#e0e2ed",
+                        "outline": "#727786",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "on-secondary-fixed-variant": "#28457e",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f9f9ff",
+                        "on-primary-container": "#fefcff",
+                        "tertiary-fixed": "#ffdbcc",
+                        "background": "#f9f9ff",
+                        "surface-container": "#ebedf9",
+                        "secondary-fixed-dim": "#afc6ff",
+                        "on-tertiary-fixed": "#351000",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2d3039",
+                        "on-tertiary-container": "#fffbff",
+                        "on-secondary-container": "#2f4b85",
+                        "primary-fixed-dim": "#afc6ff",
+                        "primary-fixed": "#d9e2ff",
+                        "surface-container-highest": "#e0e2ed",
+                        "on-surface-variant": "#414755",
+                        "secondary": "#425d97",
+                        "primary-container": "#006ef3",
+                        // Ant Design custom colors mapping for the brief
+                        "ant-primary": "#0066FF",
+                        "ant-success": "#10B981",
+                        "ant-warning": "#F59E0B",
+                        "ant-danger": "#FF4D4F",
+                        "ant-dark": "#18181C",
+                        "ant-neutral": "#8C8C8C",
+                        "ant-surface": "#F5F5F5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem",
+                        "ant": "8px"
+                    },
+                    "spacing": {
+                        "margin": "24px",
+                        "component-gap": "12px",
+                        "base": "8px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Public Sans"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "montserrat": ["Montserrat"],
+                        "inter": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased">
+<!-- TopNavBar -->
+<header class="bg-surface border-b border-outline-variant shadow-sm flex justify-between items-center px-8 py-4 w-full sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<h1 class="text-2xl font-montserrat font-bold text-primary">Circulayo CMS</h1>
+<nav class="hidden md:flex gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low px-3 py-2 rounded-xl text-label-md" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low px-3 py-2 rounded-xl text-label-md" href="#">Workspace</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low px-3 py-2 rounded-xl text-label-md" href="#">Templates</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-bold px-3 py-2 text-label-md" href="#">Analytics</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-ant focus:ring-2 focus:ring-primary text-label-md w-64" placeholder="Search..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="User profile" class="w-10 h-10 rounded-full object-cover border border-outline-variant cursor-pointer active:scale-95 duration-200" data-alt="A professional headshot of a corporate user in a modern office environment, high resolution, soft lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAsdEOywewsI6bsqLVcczxaBBuTlzFQmn7XT6_FcRmST9WrLeesZwyh_UM2jHukX3848QjwpMRljspWz8C5vCI7P94wo5UsLezIy59nZO9X6iBtKWcsEiIecDnoImfFsdLM0P3my5Anef4rCI8OF1i596D26uj7HKz2ky5e59WNZGd4NZzGt3dhs_blrCBkBLBHfGG3qNJmpPknHMneDQO7cGiVyuNHdoFvc1XUZvXj3pPaWzd9yra3-i7h4IunaDCp7k8f9OqWBmS"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="p-margin max-w-7xl mx-auto space-y-12 pb-24">
+<header class="mb-12">
+<h2 class="text-headline-lg font-montserrat text-on-surface">Design System</h2>
+<p class="text-body-md text-on-surface-variant mt-2 max-w-2xl">A comprehensive presentation board for Circulayo CMS, adhering to Ant Design principles with high-fidelity, data-driven aesthetics.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Color Palette Panel -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-8 shadow-sm">
+<h3 class="text-headline-md font-montserrat mb-6">1. Color Palette</h3>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
+<div class="space-y-2">
+<div class="h-20 rounded-ant bg-[#0066FF] shadow-sm"></div>
+<p class="text-label-md font-semibold">Primary Blue</p>
+<p class="text-xs text-on-surface-variant">#0066FF</p>
+</div>
+<div class="space-y-2">
+<div class="h-20 rounded-ant bg-[#10B981] shadow-sm"></div>
+<p class="text-label-md font-semibold">Success Emerald</p>
+<p class="text-xs text-on-surface-variant">#10B981</p>
+</div>
+<div class="space-y-2">
+<div class="h-20 rounded-ant bg-[#F59E0B] shadow-sm"></div>
+<p class="text-label-md font-semibold">Warning Gold</p>
+<p class="text-xs text-on-surface-variant">#F59E0B</p>
+</div>
+<div class="space-y-2">
+<div class="h-20 rounded-ant bg-[#FF4D4F] shadow-sm"></div>
+<p class="text-label-md font-semibold">Danger Red</p>
+<p class="text-xs text-on-surface-variant">#FF4D4F</p>
+</div>
+<div class="space-y-2">
+<div class="h-20 rounded-ant bg-[#18181C] shadow-sm"></div>
+<p class="text-label-md font-semibold">Dark Header</p>
+<p class="text-xs text-on-surface-variant">#18181C</p>
+</div>
+<div class="space-y-2">
+<div class="h-20 rounded-ant bg-[#8C8C8C] shadow-sm"></div>
+<p class="text-label-md font-semibold">Neutral Gray</p>
+<p class="text-xs text-on-surface-variant">#8C8C8C</p>
+</div>
+<div class="space-y-2">
+<div class="h-20 rounded-ant bg-[#F5F5F5] border border-outline-variant shadow-sm"></div>
+<p class="text-label-md font-semibold">Surface Light</p>
+<p class="text-xs text-on-surface-variant">#F5F5F5</p>
+</div>
+</div>
+</section>
+<!-- Typography Panel -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-8 shadow-sm">
+<h3 class="text-headline-md font-montserrat mb-6">2. Typography Scale</h3>
+<div class="space-y-6">
+<div>
+<p class="text-xs text-on-surface-variant mb-1 font-mono uppercase">Montserrat Bold 32px</p>
+<h1 class="text-4xl font-montserrat font-bold text-on-surface">Heading 1</h1>
+</div>
+<hr class="border-outline-variant/30"/>
+<div>
+<p class="text-xs text-on-surface-variant mb-1 font-mono uppercase">Montserrat SemiBold 24px</p>
+<h2 class="text-2xl font-montserrat font-semibold text-on-surface">Heading 2</h2>
+</div>
+<hr class="border-outline-variant/30"/>
+<div>
+<p class="text-xs text-on-surface-variant mb-1 font-mono uppercase">Montserrat Medium 20px</p>
+<h3 class="text-xl font-montserrat font-medium text-on-surface">Heading 3</h3>
+</div>
+<hr class="border-outline-variant/30"/>
+<div>
+<p class="text-xs text-on-surface-variant mb-1 font-mono uppercase">Inter Regular 16px</p>
+<p class="font-inter font-normal text-base text-on-surface">Body Text: The quick brown fox jumps over the lazy dog. Designed for readability in dense data environments.</p>
+</div>
+<hr class="border-outline-variant/30"/>
+<div>
+<p class="text-xs text-on-surface-variant mb-1 font-mono uppercase">Inter Medium 14px</p>
+<p class="font-inter font-medium text-sm text-on-surface">Small Text / Labels</p>
+</div>
+</div>
+</section>
+</div>
+<!-- UI Components Panel -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-8 shadow-sm">
+<h3 class="text-headline-md font-montserrat mb-8">3. UI Components (8px Radius)</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- Left Column -->
+<div class="space-y-10">
+<!-- Buttons -->
+<div>
+<h4 class="text-label-md text-on-surface-variant mb-4 uppercase tracking-wider">Buttons</h4>
+<div class="flex flex-wrap gap-4">
+<button class="bg-[#0066FF] hover:bg-primary text-white font-inter font-medium px-4 py-2 rounded-ant shadow-sm transition-all active:scale-95">
+                                Primary CTA
+                            </button>
+<button class="bg-surface hover:bg-surface-container-low text-on-surface border border-outline-variant font-inter font-medium px-4 py-2 rounded-ant transition-all active:scale-95 shadow-sm">
+                                Default Ghost
+                            </button>
+<button class="bg-[#FF4D4F] hover:bg-error text-white font-inter font-medium px-4 py-2 rounded-ant shadow-sm transition-all active:scale-95">
+                                Danger Action
+                            </button>
+</div>
+</div>
+<!-- Inputs -->
+<div>
+<h4 class="text-label-md text-on-surface-variant mb-4 uppercase tracking-wider">Inputs</h4>
+<div class="max-w-md">
+<label class="block text-label-md mb-2">Search Campaigns</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface border border-outline-variant rounded-ant focus:ring-2 focus:ring-[#0066FF] focus:border-[#0066FF] font-inter text-sm outline-none transition-all" placeholder="Search by name, ID, or status..." type="text"/>
+</div>
+</div>
+</div>
+<!-- Status Pills -->
+<div>
+<h4 class="text-label-md text-on-surface-variant mb-4 uppercase tracking-wider">Status Pills</h4>
+<div class="flex flex-wrap gap-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-ant bg-[#10B981]/10 text-[#10B981] font-inter font-medium text-xs border border-[#10B981]/20">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10B981]"></span>
+                                Live
+                            </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-ant bg-[#F59E0B]/10 text-[#F59E0B] font-inter font-medium text-xs border border-[#F59E0B]/20">
+<span class="w-1.5 h-1.5 rounded-full bg-[#F59E0B]"></span>
+                                Draft
+                            </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-ant bg-[#0066FF]/10 text-[#0066FF] font-inter font-medium text-xs border border-[#0066FF]/20">
+<span class="w-1.5 h-1.5 rounded-full bg-[#0066FF]"></span>
+                                Pending
+                            </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-ant bg-[#8C8C8C]/10 text-[#8C8C8C] font-inter font-medium text-xs border border-[#8C8C8C]/20">
+<span class="w-1.5 h-1.5 rounded-full bg-[#8C8C8C]"></span>
+                                Archived
+                            </span>
+</div>
+</div>
+</div>
+<!-- Right Column -->
+<div class="space-y-10">
+<!-- Alert Banners -->
+<div>
+<h4 class="text-label-md text-on-surface-variant mb-4 uppercase tracking-wider">Alert Banners</h4>
+<div class="space-y-3">
+<div class="flex items-start gap-3 p-4 rounded-ant bg-[#10B981]/10 border border-[#10B981]/30">
+<span class="material-symbols-outlined text-[#10B981]" data-icon="check_circle">check_circle</span>
+<div>
+<h5 class="text-sm font-semibold text-[#10B981]">Campaign Deployed</h5>
+<p class="text-xs text-on-surface-variant mt-1 font-inter">The Sustainable Packaging Q4 campaign is now live on production.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-4 rounded-ant bg-[#FF4D4F]/10 border border-[#FF4D4F]/30">
+<span class="material-symbols-outlined text-[#FF4D4F]" data-icon="error">error</span>
+<div>
+<h5 class="text-sm font-semibold text-[#FF4D4F]">Sync Failed</h5>
+<p class="text-xs text-on-surface-variant mt-1 font-inter">Unable to connect to Asset Library. Please check system logs.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Campaign Card -->
+<div>
+<h4 class="text-label-md text-on-surface-variant mb-4 uppercase tracking-wider">Campaign Card Pattern</h4>
+<div class="bg-surface rounded-ant border border-outline-variant overflow-hidden hover:shadow-md transition-shadow group">
+<div class="h-32 w-full relative">
+<img class="w-full h-full object-cover" data-alt="A clean, modern flat-lay composition showing eco-friendly, sustainable cardboard packaging boxes on a bright studio background, high quality, corporate photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqfoBWBiO68UDmIZeCkF0fYI_Qf01WQE5eM8WiMgkcdICswd8CNy0lG-9Vf57YMZqxoXibXCw3oI8j34j6iB38wgMY_X5DjHW4PRwU7AjFDSrrkntWNFKrVSnc8rQwyJ4s2BIA9Wnswp_FjxQ9I36fioFqmH2kdIFulOAzW1bNHKFgidZYiPDZPRDcUTvEayxJaUKfTMwzkf1EFkHC_CXXbCujXU1NYGrejhumw0Ws8roMd40NpudiGZz-1vGoe9HWBipPYdAnCH2g"/>
+<div class="absolute top-3 left-3 flex gap-2">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-ant bg-surface/90 backdrop-blur-sm text-[#10B981] font-inter font-medium text-xs shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10B981]"></span>
+                                        Live
+                                    </span>
+</div>
+</div>
+<div class="p-5">
+<h5 class="text-lg font-montserrat font-semibold text-on-surface mb-1 group-hover:text-[#0066FF] transition-colors">Sustainable Packaging Q4</h5>
+<p class="text-sm text-on-surface-variant font-inter mb-4">Targeting enterprise clients with eco-friendly shipping solutions across EU markets.</p>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant/50">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-ant bg-surface-container-high text-on-surface-variant font-inter font-medium text-xs">
+                                            v2 Draft
+                                        </span>
+</div>
+<button class="text-[#0066FF] font-inter font-medium text-sm hover:underline flex items-center gap-1">
+                                        View Details
+                                        <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>
