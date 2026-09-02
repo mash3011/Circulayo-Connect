@@ -189,70 +189,38 @@ export default function ConnectDashboard({ onChangeTab }) {
         </div>
       </div>
 
-      {/* Middle Row (Map Visualizer & Device simulator preview) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-        
-        {/* World Map scans card */}
-        <div className="lg:col-span-7 bg-white border border-slate-200 rounded-[24px] p-6 shadow-2xs flex flex-col justify-between relative min-h-[420px]">
-          <div className="absolute top-5 right-5 text-slate-400 hover:text-slate-600 cursor-pointer z-10">
-            <Maximize2 className="size-4.5" />
-          </div>
-
-          <div className="flex-1 flex items-center justify-center mt-4 w-full h-full relative">
-            <img src="/world_map.png" alt="World Map" className="w-full h-full object-contain select-none" />
-            
-            {/* Interactive Scan point indicators overlay */}
-            <div className="absolute inset-0 pointer-events-none">
-              {/* Marker 1: North America */}
-              <div className="absolute top-[35%] left-[20%] size-5 flex items-center justify-center">
-                <span className="absolute size-4 bg-blue-500 rounded-full opacity-35 animate-ping" />
-                <span className="size-2 bg-blue-600 rounded-full border border-white" />
-              </div>
-              
-              {/* Marker 2: Europe */}
-              <div className="absolute top-[30%] left-[50%] size-5 flex items-center justify-center">
-                <span className="absolute size-4 bg-blue-500 rounded-full opacity-35 animate-ping" />
-                <span className="size-2 bg-blue-600 rounded-full border border-white" />
-              </div>
-
-              {/* Marker 3: East Asia */}
-              <div className="absolute top-[35%] left-[75%] size-5 flex items-center justify-center">
-                <span className="absolute size-4 bg-blue-500 rounded-full opacity-35 animate-ping" />
-                <span className="size-2 bg-blue-600 rounded-full border border-white" />
-              </div>
-
-              {/* Marker 4: Australia */}
-              <div className="absolute top-[65%] left-[82%] size-5 flex items-center justify-center">
-                <span className="absolute size-4 bg-blue-500 rounded-full opacity-35 animate-ping" />
-                <span className="size-2 bg-blue-600 rounded-full border border-white" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Smartphone Simulator Preview Card */}
-        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-[24px] p-6 shadow-2xs flex flex-col gap-4">
+      {/* Middle Row (Device Simulator with Live QR Code) */}
+      <div className="w-full">
+        {/* Smartphone Simulator Preview & QR Code Card */}
+        <div className="w-full bg-white border border-slate-200 rounded-[24px] p-6 shadow-2xs flex flex-col gap-5">
           {/* Card header controls */}
-          <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Live View Simulator</span>
+          <div className="flex items-center justify-between border-b border-slate-100 pb-3.5">
+            <div className="flex items-center gap-2.5">
+              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Live View Simulator</span>
+              <span className="h-3 w-px bg-slate-200" />
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-50 text-emerald-600 border border-emerald-200/60 flex items-center gap-1.5">
+                <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Live Feed
+              </span>
+            </div>
             <div className="flex items-center gap-2">
-              <button className="text-slate-400 hover:text-slate-700 cursor-pointer">
+              <button className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer" title="Refresh Feed">
                 <RefreshCw className="size-4" />
               </button>
-              <button className="text-slate-400 hover:text-slate-700 cursor-pointer">
+              <button className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer" title="Expand View">
                 <Maximize2 className="size-4" />
               </button>
             </div>
           </div>
 
-          {/* Split layout inside the simulator card */}
-          <div className="flex-1 flex flex-col sm:flex-row items-center justify-between gap-6 py-2">
+          {/* 3-Part Layout inside the simulator card */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center py-2">
             
-            {/* Left Column: Simulator Details */}
-            <div className="flex flex-col gap-4 text-left w-full sm:w-auto">
+            {/* Column 1: Simulator Details */}
+            <div className="flex flex-col gap-4 text-left">
               <div className="flex flex-col gap-0.5">
                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Active Template</span>
-                <span className="text-sm font-black text-slate-900 leading-tight">Celebrate!</span>
+                <span className="text-base font-black text-slate-900 leading-tight">Celebrate!</span>
               </div>
               
               <div className="flex flex-col gap-0.5">
@@ -264,22 +232,99 @@ export default function ConnectDashboard({ onChangeTab }) {
                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Connection Hub</span>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-xs font-black text-emerald-600">Online & Live</span>
+                  <span className="text-xs font-black text-emerald-600">Online & Synchronized</span>
                 </div>
               </div>
 
-              <div className="h-px bg-slate-100 my-1" />
+              <div className="h-px bg-slate-100 my-0.5" />
 
               <div className="flex flex-col gap-1">
-                <span className="text-[9.5px] font-bold text-slate-400 leading-relaxed max-w-[150px]">
-                  Real-time preview of active components pushed to user client devices.
+                <span className="text-xs font-bold text-slate-800">Real-time Device Mirroring</span>
+                <span className="text-[11px] font-medium text-slate-450 leading-relaxed">
+                  Changes made in the workspace stream instantly to end-user mobile devices across all stand hubs.
                 </span>
               </div>
             </div>
 
-            {/* Right Column: Phone shell */}
+            {/* Column 2: Live QR Code Badge & Scanner */}
+            <div className="bg-slate-50/80 border border-slate-200/80 rounded-2xl p-5 flex flex-col items-center justify-center gap-3.5 text-center shadow-2xs hover:border-slate-300 transition-colors">
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Mobile Preview QR</span>
+                <span className="text-xs font-black text-slate-900">Scan to Test Live Campaign</span>
+              </div>
+
+              {/* QR Code Container with Corner Markers */}
+              <div className="relative p-3 bg-white border border-slate-200 rounded-xl shadow-xs flex items-center justify-center group">
+                {/* Visual SVG QR Pattern */}
+                <svg className="size-32 text-slate-900" viewBox="0 0 100 100" fill="currentColor">
+                  {/* Outer Frame Squares */}
+                  <rect x="5" y="5" width="26" height="26" rx="4" fill="none" stroke="currentColor" strokeWidth="5"/>
+                  <rect x="12" y="12" width="12" height="12" rx="2"/>
+                  
+                  <rect x="69" y="5" width="26" height="26" rx="4" fill="none" stroke="currentColor" strokeWidth="5"/>
+                  <rect x="76" y="12" width="12" height="12" rx="2"/>
+                  
+                  <rect x="5" y="69" width="26" height="26" rx="4" fill="none" stroke="currentColor" strokeWidth="5"/>
+                  <rect x="12" y="76" width="12" height="12" rx="2"/>
+                  
+                  {/* Data Pattern Dots */}
+                  <rect x="38" y="8" width="6" height="6" rx="1"/>
+                  <rect x="48" y="8" width="6" height="6" rx="1"/>
+                  <rect x="58" y="8" width="6" height="6" rx="1"/>
+                  
+                  <rect x="38" y="18" width="6" height="6" rx="1"/>
+                  <rect x="58" y="18" width="6" height="6" rx="1"/>
+                  
+                  <rect x="8" y="38" width="6" height="6" rx="1"/>
+                  <rect x="18" y="38" width="6" height="6" rx="1"/>
+                  <rect x="28" y="38" width="6" height="6" rx="1"/>
+                  <rect x="38" y="38" width="6" height="6" rx="1"/>
+                  <rect x="48" y="38" width="6" height="6" rx="1"/>
+                  <rect x="68" y="38" width="6" height="6" rx="1"/>
+                  <rect x="78" y="38" width="6" height="6" rx="1"/>
+                  <rect x="88" y="38" width="6" height="6" rx="1"/>
+                  
+                  <rect x="38" y="48" width="6" height="6" rx="1"/>
+                  <rect x="58" y="48" width="6" height="6" rx="1"/>
+                  <rect x="78" y="48" width="6" height="6" rx="1"/>
+                  <rect x="88" y="48" width="6" height="6" rx="1"/>
+                  
+                  <rect x="8" y="58" width="6" height="6" rx="1"/>
+                  <rect x="28" y="58" width="6" height="6" rx="1"/>
+                  <rect x="38" y="58" width="6" height="6" rx="1"/>
+                  <rect x="48" y="58" width="6" height="6" rx="1"/>
+                  <rect x="68" y="58" width="6" height="6" rx="1"/>
+                  
+                  <rect x="38" y="69" width="6" height="6" rx="1"/>
+                  <rect x="58" y="69" width="6" height="6" rx="1"/>
+                  <rect x="78" y="69" width="6" height="6" rx="1"/>
+                  
+                  <rect x="38" y="79" width="6" height="6" rx="1"/>
+                  <rect x="48" y="79" width="6" height="6" rx="1"/>
+                  <rect x="68" y="79" width="6" height="6" rx="1"/>
+                  <rect x="88" y="79" width="6" height="6" rx="1"/>
+                  
+                  <rect x="38" y="89" width="6" height="6" rx="1"/>
+                  <rect x="58" y="89" width="6" height="6" rx="1"/>
+                  <rect x="78" y="89" width="6" height="6" rx="1"/>
+                </svg>
+
+                {/* Central Circulayo Logo Badge */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="size-7 bg-blue-600 rounded-lg border-2 border-white shadow-xs flex items-center justify-center text-white">
+                    <QrCode className="size-4 stroke-[2.5]" />
+                  </div>
+                </div>
+              </div>
+
+              <span className="text-[10px] text-slate-400 font-semibold max-w-[180px]">
+                Point your mobile camera to launch the live preview on your phone
+              </span>
+            </div>
+
+            {/* Column 3: Phone Shell Mockup */}
             <div className="flex items-center justify-center shrink-0">
-              <div className="w-[200px] h-[370px] bg-black rounded-[34px] p-1 shadow-xl border-2 border-slate-900 flex flex-col relative shrink-0">
+              <div className="w-[195px] h-[360px] bg-black rounded-[34px] p-1 shadow-xl border-2 border-slate-900 flex flex-col relative shrink-0">
                 {/* Inner screen content wrapper */}
                 <div className="flex-1 bg-white rounded-[28px] overflow-hidden flex flex-col justify-between relative shadow-inner">
                   {/* Header */}
@@ -347,11 +392,11 @@ export default function ConnectDashboard({ onChangeTab }) {
 
       </div>
 
-      {/* Bottom Row (Tables) */}
+      {/* Bottom Row (Tables - 4 columns each) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         
-        {/* Table 1: Top 5 Scan Cities (col-span-3) */}
-        <div className="lg:col-span-3 bg-white border border-slate-200 rounded-[24px] p-5 shadow-2xs flex flex-col gap-4">
+        {/* Table 1: Top 5 Scan Cities (col-span-4) */}
+        <div className="lg:col-span-4 bg-white border border-slate-200 rounded-[24px] p-5 shadow-2xs flex flex-col gap-4">
           <h4 className="text-sm font-black text-slate-900 tracking-tight">Top Scan Cities</h4>
           
           <div className="flex-1 overflow-x-auto">
@@ -398,8 +443,8 @@ export default function ConnectDashboard({ onChangeTab }) {
           </div>
         </div>
 
-        {/* Table 3: Content Card Clicks (col-span-5) */}
-        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-[24px] p-5 shadow-2xs flex flex-col gap-4 relative">
+        {/* Table 3: Content Card Clicks (col-span-4) */}
+        <div className="lg:col-span-4 bg-white border border-slate-200 rounded-[24px] p-5 shadow-2xs flex flex-col gap-4 relative">
           <div className="flex items-center justify-between">
             <h4 className="text-sm font-black text-slate-900 tracking-tight">Content Card Clicks</h4>
             
