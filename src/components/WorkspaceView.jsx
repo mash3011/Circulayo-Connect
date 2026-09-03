@@ -1084,25 +1084,8 @@ export default function WorkspaceView() {
           <div className="bg-white border-b border-brand-border px-6 py-2.5 flex items-center justify-between shrink-0 select-none">
             {!isPreviewMode ? (
               <>
-                {/* Left group: Toggle Sidebar Button, Undo, Redo */}
-                <div className="flex items-center gap-3">
-                  <button 
-                    onClick={() => setIsLeftSidebarOpen(prev => !prev)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all cursor-pointer shadow-2xs ${
-                      isLeftSidebarOpen 
-                        ? 'bg-slate-50 hover:bg-slate-100 border-slate-200 text-slate-700' 
-                        : 'bg-brand-blue hover:bg-brand-blue/95 border-brand-blue text-white shadow-xs'
-                    }`}
-                    title={isLeftSidebarOpen ? "Collapse sidebar" : "Open blocks sidebar"}
-                  >
-                    {isLeftSidebarOpen ? (
-                      <PanelLeftClose className="size-3.5 text-slate-500" />
-                    ) : (
-                      <PanelLeft className="size-3.5 text-white" />
-                    )}
-                    <span>{isLeftSidebarOpen ? 'Collapse' : 'Blocks'}</span>
-                  </button>
-
+                {/* Left group: Undo, Redo, divider */}
+                <div className="flex items-center gap-4">
                   <div className="flex items-center gap-3 pr-4 border-r border-slate-200">
                     <button className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors cursor-pointer">
                       <Undo2 className="size-4 text-slate-500" />
