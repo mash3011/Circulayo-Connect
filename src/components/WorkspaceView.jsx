@@ -6,7 +6,7 @@ import {
   LayoutGrid, Copyright, Gift, Type, Leaf, Image, Megaphone, Share2, TrendingUp, Lightbulb,
   Calendar, Focus, CreditCard, Tag, DollarSign, Layers, Plus, MousePointer, Settings,
   MapPin, Compass, Coffee, Tv, ChevronRight, ChevronLeft, Map,
-  User, Home, Link, Upload
+  User, Home, Link, Upload, PanelLeft, PanelLeftClose
 } from 'lucide-react';
 import { motion, AnimatePresence, Reorder } from 'framer-motion';
 
@@ -497,6 +497,7 @@ export default function WorkspaceView() {
   ]);
 
   const [activePageIndex, setActivePageIndex] = useState(0);
+  const [isLeftSidebarOpen, setIsLeftSidebarOpen] = useState(true);
   const [activeSidebarView, setActiveSidebarView] = useState('grid'); // 'grid' or 'card-designs'
   const [selectedComponentForVariant, setSelectedComponentForVariant] = useState(null);
   const [showMapCardOnHome, setShowMapCardOnHome] = useState(true);
@@ -747,29 +748,39 @@ export default function WorkspaceView() {
         
         {/* Left Column: Components Panel */}
         <AnimatePresence>
-          {!isPreviewMode && (
+          {!isPreviewMode && isLeftSidebarOpen && (
             <motion.aside 
               initial={{ width: 0, opacity: 0 }}
               animate={{ width: 360, opacity: 1 }}
               exit={{ width: 0, opacity: 0 }}
-              className="bg-white border-r border-[#e2e8f0] flex flex-col shrink-0 select-none overflow-y-auto scrollbar-none"
+              transition={{ duration: 0.22, ease: "easeInOut" }}
+              className="bg-white border-r border-[#e2e8f0] flex flex-col shrink-0 select-none overflow-y-auto scrollbar-none relative"
             >
               <div className="flex flex-col h-full min-h-0">
                 {activeSidebarView === 'card-designs' ? (
                   // ------------------ NESTED CARD DESIGNS SUB-VIEW ------------------
                   <div className="flex flex-col h-full min-h-0 bg-white">
-                    {/* Header: Back button & Breadcrumbs */}
+                    {/* Header: Back button, Breadcrumbs & Collapse Button */}
                     <div className="px-4 pt-4 pb-2 flex flex-col gap-3 shrink-0">
-                      <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
-                        <button 
-                          onClick={() => setActiveSidebarView('grid')}
-                          className="flex items-center gap-1.5 px-3 py-1.5 border border-slate-200 hover:bg-slate-50 rounded-xl text-slate-700 cursor-pointer shadow-xs transition-all active:scale-95"
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
+                          <button 
+                            onClick={() => setActiveSidebarView('grid')}
+                            className="flex items-center gap-1.5 px-3 py-1.5 border border-slate-200 hover:bg-slate-50 rounded-xl text-slate-700 cursor-pointer shadow-xs transition-all active:scale-95"
+                          >
+                            <ChevronRight className="size-3.5 rotate-180" /> {/* points left */}
+                            <span>Blocks</span>
+                          </button>
+                          <span className="text-slate-300">/</span>
+                          <span className="text-slate-800 font-extrabold text-sm">Card</span>
+                        </div>
+                        <button
+                          onClick={() => setIsLeftSidebarOpen(false)}
+                          className="size-8 rounded-xl border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-slate-500 hover:text-slate-800 transition-all cursor-pointer shadow-2xs group"
+                          title="Collapse sidebar"
                         >
-                          <ChevronRight className="size-3.5 rotate-180" /> {/* points left */}
-                          <span>Blocks</span>
+                          <PanelLeftClose className="size-4 group-hover:scale-105 transition-transform" />
                         </button>
-                        <span className="text-slate-300">/</span>
-                        <span className="text-slate-800 font-extrabold text-sm">Card</span>
                       </div>
                       
                       {/* Badges Row */}
@@ -892,16 +903,25 @@ export default function WorkspaceView() {
                 ) : (
                   // ------------------ ORIGINAL BLOCKS GRID VIEW ------------------
                   <div className="flex flex-col h-full min-h-0">
-                    {/* 1. Search Box at the very top */}
-                    <div className="px-4 pt-4 pb-2 relative flex items-center shrink-0">
-                      <Search className="absolute left-7 size-4 text-[#94a3b8]" />
-                      <input 
-                        type="text" 
-                        placeholder="Search elements" 
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2.5 border border-[#e2e8f0] bg-white rounded-xl text-[13px] font-medium text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all placeholder-slate-400 shadow-inner"
-                      />
+                    {/* 1. Search Box & Collapse Button at the very top */}
+                    <div className="px-4 pt-4 pb-2 flex items-center gap-2 shrink-0">
+                      <div className="relative flex-1 flex items-center">
+                        <Search className="absolute left-3.5 size-4 text-[#94a3b8]" />
+                        <input 
+                          type="text" 
+                          placeholder="Search elements" 
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          className="w-full pl-9.5 pr-4 py-2 border border-[#e2e8f0] bg-white rounded-xl text-[13px] font-medium text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all placeholder-slate-400 shadow-inner"
+                        />
+                      </div>
+                      <button
+                        onClick={() => setIsLeftSidebarOpen(false)}
+                        className="size-9 rounded-xl border border-slate-200 hover:bg-slate-100 flex items-center justify-center text-slate-500 hover:text-slate-800 transition-all cursor-pointer shrink-0 shadow-2xs group"
+                        title="Collapse sidebar"
+                      >
+                        <PanelLeftClose className="size-4 group-hover:scale-105 transition-transform" />
+                      </button>
                     </div>
 
                     {/* 2. Filter Pills row (horizontal scrolling) */}
@@ -1064,8 +1084,25 @@ export default function WorkspaceView() {
           <div className="bg-white border-b border-brand-border px-6 py-2.5 flex items-center justify-between shrink-0 select-none">
             {!isPreviewMode ? (
               <>
-                {/* Left group: Undo, Redo, divider */}
-                <div className="flex items-center gap-4">
+                {/* Left group: Toggle Sidebar Button, Undo, Redo */}
+                <div className="flex items-center gap-3">
+                  <button 
+                    onClick={() => setIsLeftSidebarOpen(prev => !prev)}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all cursor-pointer shadow-2xs ${
+                      isLeftSidebarOpen 
+                        ? 'bg-slate-50 hover:bg-slate-100 border-slate-200 text-slate-700' 
+                        : 'bg-brand-blue hover:bg-brand-blue/95 border-brand-blue text-white shadow-xs'
+                    }`}
+                    title={isLeftSidebarOpen ? "Collapse sidebar" : "Open blocks sidebar"}
+                  >
+                    {isLeftSidebarOpen ? (
+                      <PanelLeftClose className="size-3.5 text-slate-500" />
+                    ) : (
+                      <PanelLeft className="size-3.5 text-white" />
+                    )}
+                    <span>{isLeftSidebarOpen ? 'Collapse' : 'Blocks'}</span>
+                  </button>
+
                   <div className="flex items-center gap-3 pr-4 border-r border-slate-200">
                     <button className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors cursor-pointer">
                       <Undo2 className="size-4 text-slate-500" />
@@ -1140,6 +1177,21 @@ export default function WorkspaceView() {
           {/* Phone Mockup Canvas */}
           <div className="flex-1 overflow-y-auto flex flex-col items-center justify-start pt-14 pb-12 px-6 relative select-none">
             
+            {/* Floating button on left edge of canvas when sidebar is collapsed */}
+            {!isLeftSidebarOpen && !isPreviewMode && (
+              <motion.button
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -10 }}
+                onClick={() => setIsLeftSidebarOpen(true)}
+                className="absolute left-4 top-3 z-40 flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-200/90 rounded-xl shadow-md hover:shadow-lg text-xs font-bold text-slate-700 hover:text-slate-900 hover:scale-105 active:scale-95 transition-all cursor-pointer group"
+                title="Open Blocks Sidebar"
+              >
+                <PanelLeft className="size-4 text-brand-blue group-hover:scale-110 transition-transform" />
+                <span>Blocks</span>
+              </motion.button>
+            )}
+
             {!isPreviewMode && (
               <div className="absolute top-2 left-1/2 -translate-x-1/2 z-40">
                 {selectedElement ? (
