@@ -10,6 +10,8 @@ export default function ConnectDashboard({ onChangeTab }) {
   const [selectedClient, setSelectedClient] = useState('Circulayo Admin');
   const [selectedLocation, setSelectedLocation] = useState('All Locations');
   const [selectedClicksSite, setSelectedClicksSite] = useState('All Sites');
+  const [showClientDropdown, setShowClientDropdown] = useState(false);
+  const [showLocationDropdown, setShowLocationDropdown] = useState(false);
   const [showClicksSiteDropdown, setShowClicksSiteDropdown] = useState(false);
 
   // Tables data
@@ -72,31 +74,82 @@ export default function ConnectDashboard({ onChangeTab }) {
         </div>
 
         {/* Filter controls row */}
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2.5">
           {/* Client Filter */}
           <div className="relative">
-            <button className="flex items-center gap-2 px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-2xs hover:bg-slate-50 cursor-pointer">
+            <button 
+              onClick={() => {
+                setShowClientDropdown(!showClientDropdown);
+                setShowLocationDropdown(false);
+              }}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-800 shadow-2xs hover:bg-slate-50 transition-all cursor-pointer"
+            >
               <span>Client: {selectedClient}</span>
-              <ChevronDown className="size-3.5 text-slate-405" />
+              <ChevronDown className={`size-3.5 text-slate-700 transition-transform ${showClientDropdown ? 'rotate-180' : ''}`} />
             </button>
+
+            {showClientDropdown && (
+              <div className="absolute left-0 top-10 w-48 bg-white border border-slate-200 rounded-2xl shadow-xl py-1.5 z-40">
+                {['Circulayo Admin', 'Derby County', 'Organisation Default'].map(client => (
+                  <button
+                    key={client}
+                    onClick={() => {
+                      setSelectedClient(client);
+                      setShowClientDropdown(false);
+                    }}
+                    className={`w-full text-left px-3.5 py-2 text-xs font-bold transition-all cursor-pointer hover:bg-slate-50 ${
+                      selectedClient === client ? 'text-brand-blue bg-blue-50/50' : 'text-slate-700'
+                    }`}
+                  >
+                    {client}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Location Filter */}
           <div className="relative">
-            <button className="flex items-center gap-2 px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-2xs hover:bg-slate-50 cursor-pointer">
+            <button 
+              onClick={() => {
+                setShowLocationDropdown(!showLocationDropdown);
+                setShowClientDropdown(false);
+              }}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-800 shadow-2xs hover:bg-slate-50 transition-all cursor-pointer"
+            >
               <span>Location: {selectedLocation}</span>
-              <ChevronDown className="size-3.5 text-slate-405" />
+              <ChevronDown className={`size-3.5 text-slate-700 transition-transform ${showLocationDropdown ? 'rotate-180' : ''}`} />
             </button>
+
+            {showLocationDropdown && (
+              <div className="absolute left-0 top-10 w-44 bg-white border border-slate-200 rounded-2xl shadow-xl py-1.5 z-40">
+                {['All Locations', 'North Stand', 'West Stand', 'South Stand', 'East Stand'].map(loc => (
+                  <button
+                    key={loc}
+                    onClick={() => {
+                      setSelectedLocation(loc);
+                      setShowLocationDropdown(false);
+                    }}
+                    className={`w-full text-left px-3.5 py-2 text-xs font-bold transition-all cursor-pointer hover:bg-slate-50 ${
+                      selectedLocation === loc ? 'text-brand-blue bg-blue-50/50' : 'text-slate-700'
+                    }`}
+                  >
+                    {loc}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Date Picker Range Mock */}
-          <div className="flex items-center gap-2 px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-2xs hover:bg-slate-50 cursor-pointer">
-            <Calendar className="size-3.5 text-slate-400" />
+          <div className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-800 shadow-2xs hover:bg-slate-50 transition-all cursor-pointer">
+            <Calendar className="size-3.5 text-slate-500" />
             <span>Select date range</span>
+            <ChevronDown className="size-3.5 text-slate-700" />
           </div>
 
           {/* More actions button */}
-          <button className="size-9 border border-slate-200 bg-white hover:bg-slate-50 rounded-xl flex items-center justify-center text-slate-500 shadow-2xs cursor-pointer">
+          <button className="size-9 border border-slate-200 bg-white hover:bg-slate-50 rounded-full flex items-center justify-center text-slate-700 shadow-2xs cursor-pointer transition-all">
             <MoreVertical className="size-4" />
           </button>
         </div>
@@ -452,14 +505,14 @@ export default function ConnectDashboard({ onChangeTab }) {
             <div className="relative">
               <button
                 onClick={() => setShowClicksSiteDropdown(!showClicksSiteDropdown)}
-                className="flex items-center gap-1.5 px-2 py-1 bg-slate-50 border border-slate-200 rounded-lg text-[9px] font-black text-[#5c6e84] hover:bg-slate-100 cursor-pointer"
+                className="flex items-center gap-2 px-3.5 py-1.5 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-800 shadow-2xs hover:bg-slate-50 transition-all cursor-pointer"
               >
                 <span>Site: {selectedClicksSite}</span>
-                <ChevronDown className="size-3" />
+                <ChevronDown className={`size-3.5 text-slate-700 transition-transform ${showClicksSiteDropdown ? 'rotate-180' : ''}`} />
               </button>
 
               {showClicksSiteDropdown && (
-                <div className="absolute right-0 top-7 w-36 bg-white border border-slate-200 rounded-xl shadow-lg py-1 z-30">
+                <div className="absolute right-0 top-9 w-40 bg-white border border-slate-200 rounded-2xl shadow-xl py-1.5 z-30">
                   {['All Sites', 'North Stand', 'West Stand'].map(site => (
                     <button
                       key={site}
@@ -467,7 +520,9 @@ export default function ConnectDashboard({ onChangeTab }) {
                         setSelectedClicksSite(site);
                         setShowClicksSiteDropdown(false);
                       }}
-                      className="w-full text-left px-3 py-1.5 text-[10px] font-bold text-slate-700 hover:bg-slate-50 cursor-pointer"
+                      className={`w-full text-left px-3.5 py-2 text-xs font-bold transition-all cursor-pointer hover:bg-slate-50 ${
+                        selectedClicksSite === site ? 'text-brand-blue bg-blue-50/50' : 'text-slate-700'
+                      }`}
                     >
                       {site}
                     </button>

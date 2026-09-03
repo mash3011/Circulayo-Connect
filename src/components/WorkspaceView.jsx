@@ -1147,24 +1147,21 @@ export default function WorkspaceView() {
                   <div className="flex items-center gap-2.5 bg-white border border-slate-200/80 rounded-lg p-1.5 shadow-2xl select-none">
                     
                     {/* Font Family Dropdown */}
-                    <div className="flex items-center border border-slate-200 rounded-lg px-2 py-0.5 bg-slate-50/50 hover:bg-slate-50 transition-colors">
+                    <div className="relative flex items-center">
                       <select
                         value={elementStyles[selectedElement.id].fontFamily || 'Canva Sans'}
                         onChange={(e) => updateSelectedElementStyle('fontFamily', e.target.value)}
-                        className="bg-transparent text-xs font-bold text-slate-800 focus:outline-none cursor-pointer pr-3 appearance-none"
-                        style={{ 
-                          backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' viewBox='0 0 24 24' stroke='%2364748b' stroke-width='2.5'><path stroke-linecap='round' stroke-linejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5'/></svg>")`, 
-                          backgroundPosition: 'right center', 
-                          backgroundRepeat: 'no-repeat', 
-                          backgroundSize: '10px' 
-                        }}
+                        className="appearance-none bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-800 px-4 py-1.5 pr-8.5 hover:bg-slate-50 focus:outline-none cursor-pointer shadow-2xs transition-all"
                       >
-                        <option value="Canva Sans">Canva Sans</option>
-                        <option value="Source Sans Pro">Source Sans Pro</option>
-                        <option value="Inter">Inter</option>
-                        <option value="Roboto">Roboto</option>
-                        <option value="Helvetica Neue">Helvetica Neue</option>
+                        <option value="Canva Sans">Font: Canva Sans</option>
+                        <option value="Source Sans Pro">Font: Source Sans Pro</option>
+                        <option value="Inter">Font: Inter</option>
+                        <option value="Roboto">Font: Roboto</option>
+                        <option value="Helvetica Neue">Font: Helvetica Neue</option>
                       </select>
+                      <span className="absolute inset-y-0 right-0 flex items-center pr-2.5 pointer-events-none text-slate-700">
+                        <ChevronDown className="size-3.5 stroke-[2.5]" />
+                      </span>
                     </div>
 
                     {/* Font Size decrease button */}
@@ -1436,12 +1433,12 @@ export default function WorkspaceView() {
                     {/* Pages dropdown selector */}
                     <div className="relative">
                       <button 
-                        className="flex items-center gap-1.5 text-slate-500 hover:text-slate-800 text-xs font-black px-1.5 py-1 transition-colors cursor-pointer whitespace-nowrap"
+                        className="flex items-center gap-2 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-800 px-3.5 py-1.5 shadow-2xs hover:bg-slate-50 transition-all cursor-pointer whitespace-nowrap"
                         onClick={() => setShowPagesDropdown(!showPagesDropdown)}
                       >
-                        <FileText className="size-3.5 text-slate-400" />
+                        <FileText className="size-3.5 text-slate-500" />
                         <span>Pages</span>
-                        <ChevronDown className="size-3 text-slate-400 font-extrabold" />
+                        <ChevronDown className="size-3.5 text-slate-700 stroke-[2.5]" />
                       </button>
 
                       {showPagesDropdown && (
@@ -3740,17 +3737,22 @@ export default function WorkspaceView() {
                               {/* Font Family */}
                               <div className="flex flex-col gap-1">
                                 <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider">Font Family</span>
-                                <select
-                                  value={elementStyles[selectedElement.id].fontFamily || 'Canva Sans'}
-                                  onChange={(e) => updateSelectedElementStyle('fontFamily', e.target.value)}
-                                  className="w-full text-xs font-extrabold text-slate-800 bg-white border border-slate-200 rounded-lg p-2 focus:outline-none focus:border-brand-blue cursor-pointer font-semibold"
-                                >
-                                  <option value="Canva Sans">Canva Sans</option>
-                                  <option value="Source Sans Pro">Source Sans Pro</option>
-                                  <option value="Inter">Inter</option>
-                                  <option value="Roboto">Roboto</option>
-                                  <option value="Helvetica Neue">Helvetica Neue</option>
-                                </select>
+                                <div className="relative">
+                                  <select
+                                    value={elementStyles[selectedElement.id].fontFamily || 'Canva Sans'}
+                                    onChange={(e) => updateSelectedElementStyle('fontFamily', e.target.value)}
+                                    className="w-full appearance-none text-xs font-bold text-slate-800 bg-white border border-slate-200 rounded-full px-4 py-2 pr-8 shadow-2xs focus:outline-none focus:border-brand-blue cursor-pointer"
+                                  >
+                                    <option value="Canva Sans">Canva Sans</option>
+                                    <option value="Source Sans Pro">Source Sans Pro</option>
+                                    <option value="Inter">Inter</option>
+                                    <option value="Roboto">Roboto</option>
+                                    <option value="Helvetica Neue">Helvetica Neue</option>
+                                  </select>
+                                  <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-700">
+                                    <ChevronDown className="size-3.5 stroke-[2.5]" />
+                                  </span>
+                                </div>
                               </div>
 
                               {/* Size & Weight */}
@@ -3770,16 +3772,21 @@ export default function WorkspaceView() {
                                 
                                 <div className="flex flex-col gap-1">
                                   <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider">Weight</span>
-                                  <select
-                                    value={elementStyles[selectedElement.id].fontWeight || 'Normal'}
-                                    onChange={(e) => updateSelectedElementStyle('fontWeight', e.target.value)}
-                                    className="w-full text-xs font-extrabold text-slate-800 bg-white border border-slate-200 rounded-lg p-1.5 focus:outline-none cursor-pointer"
-                                  >
-                                    <option value="Normal">Normal</option>
-                                    <option value="Semibold">Semibold</option>
-                                    <option value="Bold">Bold</option>
-                                    <option value="Extrabold">Extrabold</option>
-                                  </select>
+                                  <div className="relative">
+                                    <select
+                                      value={elementStyles[selectedElement.id].fontWeight || 'Normal'}
+                                      onChange={(e) => updateSelectedElementStyle('fontWeight', e.target.value)}
+                                      className="w-full appearance-none text-xs font-bold text-slate-800 bg-white border border-slate-200 rounded-full px-3 py-1.5 pr-7 shadow-2xs focus:outline-none cursor-pointer"
+                                    >
+                                      <option value="Normal">Normal</option>
+                                      <option value="Semibold">Semibold</option>
+                                      <option value="Bold">Bold</option>
+                                      <option value="Extrabold">Extrabold</option>
+                                    </select>
+                                    <span className="absolute inset-y-0 right-0 flex items-center pr-2.5 pointer-events-none text-slate-700">
+                                      <ChevronDown className="size-3 stroke-[2.5]" />
+                                    </span>
+                                  </div>
                                 </div>
                               </div>
 
@@ -4028,17 +4035,22 @@ export default function WorkspaceView() {
                                 
                                 <div className="flex flex-col gap-1">
                                   <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider">Style</span>
-                                  <select
-                                    value={elementStyles[selectedElement.id].borderStyle || 'solid'}
-                                    onChange={(e) => updateSelectedElementStyle('borderStyle', e.target.value)}
-                                    className="w-full text-xs font-extrabold text-slate-800 bg-white border border-slate-200 rounded-lg p-1.5 focus:outline-none cursor-pointer"
-                                  >
-                                    <option value="solid">Solid</option>
-                                    <option value="dashed">Dashed</option>
-                                    <option value="dotted">Dotted</option>
-                                    <option value="double">Double</option>
-                                    <option value="none">None</option>
-                                  </select>
+                                  <div className="relative">
+                                    <select
+                                      value={elementStyles[selectedElement.id].borderStyle || 'solid'}
+                                      onChange={(e) => updateSelectedElementStyle('borderStyle', e.target.value)}
+                                      className="w-full appearance-none text-xs font-bold text-slate-800 bg-white border border-slate-200 rounded-full px-3 py-1.5 pr-7 shadow-2xs focus:outline-none cursor-pointer"
+                                    >
+                                      <option value="solid">Solid</option>
+                                      <option value="dashed">Dashed</option>
+                                      <option value="dotted">Dotted</option>
+                                      <option value="double">Double</option>
+                                      <option value="none">None</option>
+                                    </select>
+                                    <span className="absolute inset-y-0 right-0 flex items-center pr-2.5 pointer-events-none text-slate-700">
+                                      <ChevronDown className="size-3 stroke-[2.5]" />
+                                    </span>
+                                  </div>
                                 </div>
                               </div>
 
