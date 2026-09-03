@@ -6,7 +6,7 @@ import {
   LayoutGrid, Copyright, Gift, Type, Leaf, Image, Megaphone, Share2, TrendingUp, Lightbulb,
   Calendar, Focus, CreditCard, Tag, DollarSign, Layers, Plus, MousePointer, Settings,
   MapPin, Compass, Coffee, Tv, ChevronRight, Map,
-  User, Home, Link, Upload, ZoomIn, ZoomOut, Columns
+  User, Home, Link, Upload
 } from 'lucide-react';
 import { motion, AnimatePresence, Reorder } from 'framer-motion';
 
@@ -92,10 +92,6 @@ export default function WorkspaceView() {
   const [showAccountInfo, setShowAccountInfo] = useState(true);
   const [accountLink, setAccountLink] = useState('https://circulayo.com/account');
   const [accountLabel, setAccountLabel] = useState('Account Information');
-  
-  // Widescreen & Canvas Controls
-  const [zoomLevel, setZoomLevel] = useState(1);
-  const [canvasViewMode, setCanvasViewMode] = useState('stack'); // 'stack' or 'flow'
   
   const baseElementStyles = {
     // Layout
@@ -1068,76 +1064,16 @@ export default function WorkspaceView() {
           <div className="bg-white border-b border-brand-border px-6 py-2.5 flex items-center justify-between shrink-0 select-none">
             {!isPreviewMode ? (
               <>
-                {/* Left group: Undo, Redo, divider, View Mode & Zoom */}
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-2.5 pr-3 border-r border-slate-200">
+                {/* Left group: Undo, Redo, divider */}
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3 pr-4 border-r border-slate-200">
                     <button className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors cursor-pointer">
                       <Undo2 className="size-4 text-slate-500" />
-                      <span className="hidden xl:inline">Undo</span>
+                      <span>Undo</span>
                     </button>
                     <button className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors cursor-pointer">
                       <Redo2 className="size-4 text-slate-500" />
-                      <span className="hidden xl:inline">Redo</span>
-                    </button>
-                  </div>
-
-                  {/* View Mode Switcher: Deck vs Multi-Screen Flow */}
-                  <div className="flex items-center bg-slate-100 p-0.5 rounded-full border border-slate-200/80">
-                    <button
-                      onClick={() => setCanvasViewMode('stack')}
-                      className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                        canvasViewMode === 'stack' 
-                          ? 'bg-white text-slate-900 shadow-2xs' 
-                          : 'text-slate-500 hover:text-slate-800'
-                      }`}
-                      title="Stacked Deck View (Focused Single Screen)"
-                    >
-                      <Layers className="size-3.5" />
-                      <span>Deck</span>
-                    </button>
-                    <button
-                      onClick={() => setCanvasViewMode('flow')}
-                      className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                        canvasViewMode === 'flow' 
-                          ? 'bg-white text-slate-900 shadow-2xs' 
-                          : 'text-slate-500 hover:text-slate-800'
-                      }`}
-                      title="Flow Spread View (Multi-Screen Campaign Flow)"
-                    >
-                      <Columns className="size-3.5" />
-                      <span>Flow</span>
-                    </button>
-                  </div>
-
-                  {/* Zoom Controls */}
-                  <div className="flex items-center gap-1 bg-slate-100 p-0.5 rounded-full border border-slate-200/80">
-                    <button
-                      onClick={() => setZoomLevel(prev => Math.max(0.7, +(prev - 0.1).toFixed(2)))}
-                      className="size-6 flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-white rounded-full transition-all cursor-pointer"
-                      title="Zoom Out"
-                    >
-                      <ZoomOut className="size-3.5" />
-                    </button>
-                    <button
-                      onClick={() => setZoomLevel(1)}
-                      className="px-2 text-xs font-bold text-slate-700 hover:text-slate-900 transition-colors cursor-pointer"
-                      title="Reset Zoom to 100%"
-                    >
-                      {Math.round(zoomLevel * 100)}%
-                    </button>
-                    <button
-                      onClick={() => setZoomLevel(prev => Math.min(1.5, +(prev + 0.1).toFixed(2)))}
-                      className="size-6 flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-white rounded-full transition-all cursor-pointer"
-                      title="Zoom In"
-                    >
-                      <ZoomIn className="size-3.5" />
-                    </button>
-                    <button
-                      onClick={() => setZoomLevel(1.2)}
-                      className="px-2 py-0.5 text-[10px] font-bold text-slate-600 hover:text-slate-900 hover:bg-white rounded-full transition-all cursor-pointer"
-                      title="Fit to Screen"
-                    >
-                      Fit
+                      <span>Redo</span>
                     </button>
                   </div>
                 </div>
@@ -1648,117 +1584,32 @@ export default function WorkspaceView() {
               )}
             </AnimatePresence>
             
-            {/* Center relative deck container */}
-            <div 
-              className="relative flex items-center justify-center transition-all duration-300"
-              style={{
-                width: canvasViewMode === 'flow' ? `${Math.max(420, pages.length * 390)}px` : '420px',
-                height: '700px',
-                transform: `scale(${zoomLevel})`,
-                transformOrigin: 'top center'
-              }}
-            >
+            {/* Center Phone Container */}
+            <div className="relative w-[340px] sm:w-[350px] h-[680px] flex items-center justify-center">
               {pages.map((page, i) => {
-                // Calculate position relative to active index
-                let diff = i - activePageIndex;
-                let isActive = diff === 0;
-                
-                let x = 0;
-                let y = 0;
-                let scale = 1;
-                let zIndex = 30 - Math.abs(diff) * 5;
-                let opacity = 1;
-                let pointerEvents = 'auto';
-                
-                if (canvasViewMode === 'flow') {
-                  // Horizontal multi-page spread across wide screen
-                  x = i * 390;
-                  y = 0;
-                  scale = isActive ? 1 : 0.94;
-                  opacity = 1;
-                  zIndex = isActive ? 30 : 20;
-                } else {
-                  // 3D Stack Layout Style Parameters
-                  if (isActive) {
-                    x = 0;
-                    y = 0;
-                    scale = 1;
-                    opacity = 1;
-                  } else if (diff > 0) {
-                    // Stacked behind on the right
-                    x = diff * 75; // Shift right by 75px per stack level
-                    y = diff * -10; // Shift up slightly
-                    scale = 1 - diff * 0.08; // Scale down by 8% per stack level
-                    opacity = Math.max(0.4, 1 - diff * 0.22);
-                  } else {
-                    // Passed screens slide left and fade
-                    x = diff * 160;
-                    y = 0;
-                    scale = 0.85;
-                    opacity = 0;
-                  }
-                }
+                if (i !== activePageIndex) return null;
+                const isActive = true;
                 
                 return (
-                  <motion.div
+                  <div
                     key={page.id}
-                    style={{
-                      position: 'absolute',
-                      left: 0,
-                      top: 0,
-                      width: '340px',
-                      height: '680px',
-                      zIndex: zIndex,
-                      pointerEvents: pointerEvents
-                    }}
-                    animate={{
-                      x: x,
-                      y: y,
-                      scale: scale,
-                      opacity: opacity
-                    }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 280,
-                      damping: 24
-                    }}
-                    onClick={() => {
-                      if (!isActive) {
-                        setActivePageIndex(i);
-                      }
-                    }}
-                    className="cursor-pointer select-none origin-bottom-left"
+                    className="relative w-full h-full select-none"
                   >
                     {/* Page Indicator and Title Above Screen */}
                     <div className="absolute -top-7 left-0 right-0 flex items-center justify-between px-2 font-sans select-none">
-                      <span className={`text-[11px] font-extrabold truncate max-w-[200px] ${
-                        isActive ? 'text-slate-900' : 'text-slate-400'
-                      }`}>
+                      <span className="text-[11px] font-extrabold truncate max-w-[200px] text-slate-900">
                         {page.title || `Screen ${i + 1}`}
                       </span>
-                      <span className={`text-[10px] font-black px-2 py-0.5 rounded-full ${
-                        isActive ? 'bg-brand-blue text-white shadow-xs' : 'bg-slate-200/80 text-slate-500'
-                      }`}>
+                      <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-brand-blue text-white shadow-xs">
                         {i + 1}/{pages.length}
                       </span>
                     </div>
 
-                    {/* Background Transparent click capture for background screens */}
-                    {!isActive && (
-                      <div className="absolute inset-0 bg-transparent rounded-[42px] z-50 cursor-pointer" />
-                    )}
-
-                    {/* Simulated Phone Shell or Card Container */}
-                    <div className={isActive 
-                      ? "w-full h-full bg-black rounded-[46px] shadow-2xl p-2 border-[3px] border-slate-900 flex flex-col relative shrink-0 transition-all duration-300"
-                      : "w-full h-full bg-white rounded-[40px] overflow-hidden flex flex-col justify-between relative shadow-lg border border-slate-200/80 opacity-90 shrink-0 transition-all duration-300 hover:opacity-100"
-                    }>
+                    {/* Simulated Phone Shell */}
+                    <div className="w-full h-full bg-black rounded-[46px] shadow-2xl p-2 border-[3px] border-slate-900 flex flex-col relative shrink-0 transition-all duration-300">
                       
                       {/* Screen Content Wrapper */}
-                      <div className={isActive 
-                        ? "flex-1 bg-white rounded-[38px] overflow-hidden flex flex-col justify-between relative shadow-inner"
-                        : "flex-1 flex flex-col justify-between relative h-full min-h-0"
-                      }>
+                      <div className="flex-1 bg-white rounded-[38px] overflow-hidden flex flex-col justify-between relative shadow-inner">
                         
                         {/* Interactive Sidenav Overlay */}
                         <AnimatePresence>
@@ -2441,23 +2292,36 @@ export default function WorkspaceView() {
                       </div>
                       
                       {/* Bottom Home Indicator */}
-                      {isActive && (
-                        <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-28 h-1 bg-white/20 rounded-full animate-pulse" />
-                      )}
+                      <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-28 h-1 bg-white/20 rounded-full animate-pulse" />
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
 
-            {/* Next arrow pagination button placed perfectly next to the phone stack */}
+            {/* Previous screen pagination button */}
+            {pages.length > 1 && (
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActivePageIndex(prev => (prev - 1 + pages.length) % pages.length);
+                }}
+                className="absolute right-[calc(50%+190px)] top-[350px] -translate-y-1/2 size-9 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-700 hover:text-slate-900 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer z-40"
+                title="Previous Screen"
+              >
+                <ChevronRight className="size-4 stroke-[2.5] rotate-180" />
+              </button>
+            )}
+
+            {/* Next screen pagination button */}
             {pages.length > 1 && (
               <button 
                 onClick={(e) => {
                   e.stopPropagation();
                   setActivePageIndex(prev => (prev + 1) % pages.length);
                 }}
-                className="absolute left-[calc(50%+160px)] top-[350px] -translate-y-1/2 size-9 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-700 hover:text-slate-900 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer z-40"
+                className="absolute left-[calc(50%+190px)] top-[350px] -translate-y-1/2 size-9 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-700 hover:text-slate-900 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer z-40"
+                title="Next Screen"
               >
                 <ChevronRight className="size-4 stroke-[2.5]" />
               </button>
