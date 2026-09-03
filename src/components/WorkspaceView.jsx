@@ -1090,7 +1090,7 @@ export default function WorkspaceView() {
                     className="flex items-center gap-1.5 px-4 py-2 border border-brand-border hover:bg-slate-50 text-slate-855 text-xs font-bold rounded-xl transition-all shadow-xs cursor-pointer"
                   >
                     <Eye className="size-4 text-slate-650" />
-                    <span>Preview / Qr</span>
+                    <span>Preview / QR Code</span>
                   </button>
                 </div>
 
