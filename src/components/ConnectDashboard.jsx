@@ -52,7 +52,7 @@ export default function ConnectDashboard({ onChangeTab }) {
   ];
 
   return (
-    <div className="flex flex-col gap-5 w-full font-sans text-slate-800 pb-12 select-none">
+    <div className="flex flex-col gap-5 w-full font-sans text-slate-800 pb-12 select-none text-left">
       
       {/* Breadcrumb Navigation */}
       <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-400">
@@ -156,7 +156,7 @@ export default function ConnectDashboard({ onChangeTab }) {
       </div>
 
       {/* Metrics Row (6 Cards) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 w-full">
         {/* Card 1: Total Scans */}
         <div className="bg-white border border-slate-200 rounded-2xl p-4.5 relative shadow-2xs flex justify-between items-center group hover:shadow-xs transition-shadow">
           <div className="absolute top-3.5 right-3.5 text-slate-350 hover:text-slate-500 cursor-help">

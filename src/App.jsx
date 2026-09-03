@@ -264,7 +264,7 @@ export default function App() {
               exit={{ opacity: 0 }}
               className="flex-1 overflow-y-auto bg-[#eff1f5] p-6 md:p-8"
             >
-              <div className="max-w-7xl w-full mx-auto">
+              <div className="w-full text-left">
                 <ConnectDashboard onChangeTab={setActiveTab} />
               </div>
             </motion.div>
@@ -276,7 +276,7 @@ export default function App() {
               exit={{ opacity: 0 }}
               className="flex-1 overflow-y-auto"
             >
-              <main className="p-6 md:p-8 w-full max-w-[1440px] mr-auto flex flex-col gap-8 text-left">
+              <main className="p-6 md:p-8 w-full flex flex-col gap-8 text-left">
                 
                 {/* Home View */}
                 {activeTab === 'home' && (
@@ -304,8 +304,8 @@ export default function App() {
                         </button>
 
                         {!collapsedSections.derby && (
-                          <div className={`grid gap-6 ${
-                            layout === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1'
+                          <div className={`grid gap-6 w-full ${
+                            layout === 'grid' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6' : 'grid-cols-1'
                           }`}>
                             {derbyCards.map(card => (
                               <GridCard key={card.id} card={card} layout={layout} onSelect={handleSelectCard} onViewAnalytics={() => setActiveTab('dashboard')} />
@@ -337,8 +337,8 @@ export default function App() {
                         </button>
 
                         {!collapsedSections.defaultClient && (
-                          <div className={`grid gap-6 ${
-                            layout === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1'
+                          <div className={`grid gap-6 w-full ${
+                            layout === 'grid' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6' : 'grid-cols-1'
                           }`}>
                             {defaultClientCards.map(card => (
                               <GridCard key={card.id} card={card} layout={layout} onSelect={handleSelectCard} onViewAnalytics={() => setActiveTab('dashboard')} />
@@ -365,7 +365,7 @@ export default function App() {
                         No draft pages found.
                       </div>
                     ) : (
-                      <div className={`grid gap-6 ${layout === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1'}`}>
+                      <div className={`grid gap-6 w-full ${layout === 'grid' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6' : 'grid-cols-1'}`}>
                         {filteredDraftCards.map(card => (
                           <GridCard key={card.id} card={card} layout={layout} onSelect={handleSelectCard} onViewAnalytics={() => setActiveTab('dashboard')} />
                         ))}
@@ -490,7 +490,7 @@ export default function App() {
                         Showing {filteredTemplates.length} templates
                       </span>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 w-full">
                         {filteredTemplates.map((tmpl) => {
                           return (
                             <div 
