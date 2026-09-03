@@ -5,7 +5,7 @@ import {
   Menu, QrCode, ArrowRight, Play, Check, ArrowLeft, FileText,
   LayoutGrid, Copyright, Gift, Type, Leaf, Image, Megaphone, Share2, TrendingUp, Lightbulb,
   Calendar, Focus, CreditCard, Tag, DollarSign, Layers, Plus, MousePointer, Settings,
-  MapPin, Compass, Coffee, Tv, ChevronRight, Map,
+  MapPin, Compass, Coffee, Tv, ChevronRight, ChevronLeft, Map,
   User, Home, Link, Upload
 } from 'lucide-react';
 import { motion, AnimatePresence, Reorder } from 'framer-motion';
@@ -2366,6 +2366,20 @@ export default function WorkspaceView() {
               })}
             </div>
 
+            {/* Left arrow pagination button placed to the left of the phone stack */}
+            {pages.length > 1 && (
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActivePageIndex(prev => (prev - 1 + pages.length) % pages.length);
+                }}
+                className="absolute right-[calc(50%+160px)] top-[350px] -translate-y-1/2 size-9 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-700 hover:text-slate-900 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer z-40"
+                title="Previous Screen"
+              >
+                <ChevronLeft className="size-4 stroke-[2.5]" />
+              </button>
+            )}
+
             {/* Next arrow pagination button placed perfectly next to the phone stack */}
             {pages.length > 1 && (
               <button 
@@ -2374,6 +2388,7 @@ export default function WorkspaceView() {
                   setActivePageIndex(prev => (prev + 1) % pages.length);
                 }}
                 className="absolute left-[calc(50%+160px)] top-[350px] -translate-y-1/2 size-9 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-700 hover:text-slate-900 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer z-40"
+                title="Next Screen"
               >
                 <ChevronRight className="size-4 stroke-[2.5]" />
               </button>
