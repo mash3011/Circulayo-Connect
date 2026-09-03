@@ -266,178 +266,179 @@ export default function ConnectDashboard({ onChangeTab }) {
             </div>
           </div>
 
-          {/* 3-Part Layout inside the simulator card */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center py-2">
+          {/* Split layout inside the simulator card: Left Details + QR, Right Enlarged Phone */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-2">
             
-            {/* Column 1: Simulator Details */}
-            <div className="flex flex-col gap-4 text-left">
-              <div className="flex flex-col gap-0.5">
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Active Template</span>
-                <span className="text-base font-black text-slate-900 leading-tight">Celebrate!</span>
-              </div>
-              
-              <div className="flex flex-col gap-0.5">
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Client / Location</span>
-                <span className="text-xs font-bold text-slate-700 leading-tight">Vaillant / North Stand</span>
-              </div>
+            {/* Left Column (col-span-6): Simulator Details & QR Code directly underneath */}
+            <div className="lg:col-span-6 flex flex-col gap-5 text-left">
+              {/* Text Info Group */}
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Active Template</span>
+                  <span className="text-lg font-black text-slate-900 leading-tight">Celebrate!</span>
+                </div>
+                
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Client / Location</span>
+                  <span className="text-sm font-bold text-slate-700 leading-tight">Vaillant / North Stand</span>
+                </div>
 
-              <div className="flex flex-col gap-0.5">
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Connection Hub</span>
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-xs font-black text-emerald-600">Online & Synchronized</span>
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Connection Hub</span>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="text-xs font-black text-emerald-600">Online & Synchronized</span>
+                  </div>
+                </div>
+
+                <div className="h-px bg-slate-100 my-0.5" />
+
+                <div className="flex flex-col gap-1">
+                  <span className="text-xs font-bold text-slate-800">Real-time Device Mirroring</span>
+                  <span className="text-[11.5px] font-medium text-slate-500 leading-relaxed">
+                    Changes made in the workspace stream instantly to end-user mobile devices across all stand hubs.
+                  </span>
                 </div>
               </div>
 
-              <div className="h-px bg-slate-100 my-0.5" />
+              {/* QR Code Card - Positioned directly under the text on the left side */}
+              <div className="bg-slate-50/90 border border-slate-200/90 rounded-2xl p-4.5 flex flex-col sm:flex-row items-center gap-4.5 shadow-2xs hover:border-slate-300 transition-colors">
+                {/* Visual SVG QR Pattern */}
+                <div className="relative p-2.5 bg-white border border-slate-200 rounded-xl shadow-xs flex items-center justify-center shrink-0">
+                  <svg className="size-28 text-slate-900" viewBox="0 0 100 100" fill="currentColor">
+                    {/* Outer Frame Squares */}
+                    <rect x="5" y="5" width="26" height="26" rx="4" fill="none" stroke="currentColor" strokeWidth="5"/>
+                    <rect x="12" y="12" width="12" height="12" rx="2"/>
+                    
+                    <rect x="69" y="5" width="26" height="26" rx="4" fill="none" stroke="currentColor" strokeWidth="5"/>
+                    <rect x="76" y="12" width="12" height="12" rx="2"/>
+                    
+                    <rect x="5" y="69" width="26" height="26" rx="4" fill="none" stroke="currentColor" strokeWidth="5"/>
+                    <rect x="12" y="76" width="12" height="12" rx="2"/>
+                    
+                    {/* Data Pattern Dots */}
+                    <rect x="38" y="8" width="6" height="6" rx="1"/>
+                    <rect x="48" y="8" width="6" height="6" rx="1"/>
+                    <rect x="58" y="8" width="6" height="6" rx="1"/>
+                    
+                    <rect x="38" y="18" width="6" height="6" rx="1"/>
+                    <rect x="58" y="18" width="6" height="6" rx="1"/>
+                    
+                    <rect x="8" y="38" width="6" height="6" rx="1"/>
+                    <rect x="18" y="38" width="6" height="6" rx="1"/>
+                    <rect x="28" y="38" width="6" height="6" rx="1"/>
+                    <rect x="38" y="38" width="6" height="6" rx="1"/>
+                    <rect x="48" y="38" width="6" height="6" rx="1"/>
+                    <rect x="68" y="38" width="6" height="6" rx="1"/>
+                    <rect x="78" y="38" width="6" height="6" rx="1"/>
+                    <rect x="88" y="38" width="6" height="6" rx="1"/>
+                    
+                    <rect x="38" y="48" width="6" height="6" rx="1"/>
+                    <rect x="58" y="48" width="6" height="6" rx="1"/>
+                    <rect x="78" y="48" width="6" height="6" rx="1"/>
+                    <rect x="88" y="48" width="6" height="6" rx="1"/>
+                    
+                    <rect x="8" y="58" width="6" height="6" rx="1"/>
+                    <rect x="28" y="58" width="6" height="6" rx="1"/>
+                    <rect x="38" y="58" width="6" height="6" rx="1"/>
+                    <rect x="48" y="58" width="6" height="6" rx="1"/>
+                    <rect x="68" y="58" width="6" height="6" rx="1"/>
+                    
+                    <rect x="38" y="69" width="6" height="6" rx="1"/>
+                    <rect x="58" y="69" width="6" height="6" rx="1"/>
+                    <rect x="78" y="69" width="6" height="6" rx="1"/>
+                    
+                    <rect x="38" y="79" width="6" height="6" rx="1"/>
+                    <rect x="48" y="79" width="6" height="6" rx="1"/>
+                    <rect x="68" y="79" width="6" height="6" rx="1"/>
+                    <rect x="88" y="79" width="6" height="6" rx="1"/>
+                    
+                    <rect x="38" y="89" width="6" height="6" rx="1"/>
+                    <rect x="58" y="89" width="6" height="6" rx="1"/>
+                    <rect x="78" y="89" width="6" height="6" rx="1"/>
+                  </svg>
 
-              <div className="flex flex-col gap-1">
-                <span className="text-xs font-bold text-slate-800">Real-time Device Mirroring</span>
-                <span className="text-[11px] font-medium text-slate-450 leading-relaxed">
-                  Changes made in the workspace stream instantly to end-user mobile devices across all stand hubs.
-                </span>
+                  {/* Central Circulayo Logo Badge */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="size-6 bg-blue-600 rounded-md border-2 border-white shadow-xs flex items-center justify-center text-white">
+                      <QrCode className="size-3.5 stroke-[2.5]" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col text-left gap-1">
+                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Mobile Preview QR</span>
+                  <span className="text-xs font-black text-slate-900 leading-tight">Scan to Test Live Campaign</span>
+                  <span className="text-[11px] text-slate-500 font-medium leading-relaxed mt-0.5">
+                    Point your mobile camera at this QR code to test this interactive experience live on your phone.
+                  </span>
+                </div>
               </div>
             </div>
 
-            {/* Column 2: Phone Shell Mockup (Middle) */}
-            <div className="flex items-center justify-center shrink-0">
-              <div className="w-[195px] h-[360px] bg-black rounded-[34px] p-1 shadow-xl border-2 border-slate-900 flex flex-col relative shrink-0">
+            {/* Right Column (col-span-6): Increased Size Phone Mockup */}
+            <div className="lg:col-span-6 flex items-center justify-center py-2">
+              <div className="w-[260px] sm:w-[280px] h-[520px] bg-black rounded-[42px] p-2 shadow-2xl border-[3px] border-slate-900 flex flex-col relative shrink-0">
                 {/* Inner screen content wrapper */}
-                <div className="flex-1 bg-white rounded-[28px] overflow-hidden flex flex-col justify-between relative shadow-inner">
+                <div className="flex-1 bg-white rounded-[34px] overflow-hidden flex flex-col justify-between relative shadow-inner">
                   {/* Header */}
-                  <header className="bg-white border-b border-slate-105 px-3 pt-5 pb-1.5 flex items-center justify-between select-none z-10 shrink-0">
-                    <div className="flex items-center gap-1">
-                      <Menu className="size-3 text-slate-700" />
-                      <span className="font-montserrat font-bold tracking-widest text-[8px] text-teal-650">CIRCULAYO</span>
+                  <header className="bg-white border-b border-slate-105 px-4 pt-6 pb-2.5 flex items-center justify-between select-none z-10 shrink-0">
+                    <div className="flex items-center gap-1.5">
+                      <Menu className="size-4 text-slate-700" />
+                      <span className="font-montserrat font-bold tracking-widest text-[10px] text-teal-650">CIRCULAYO</span>
                     </div>
-                    <span className="text-[7px] font-black text-slate-400">Vaillant</span>
+                    <span className="text-[9px] font-black text-slate-400">Vaillant</span>
                   </header>
 
                   {/* Scrollable Body */}
-                  <div className="flex-1 overflow-y-auto px-3 py-2 flex flex-col gap-2 scrollbar-none bg-slate-50/50">
+                  <div className="flex-1 overflow-y-auto px-4 py-3 flex flex-col gap-2.5 scrollbar-none bg-slate-50/50">
                     <div className="flex flex-col select-none">
-                      <h2 className="text-[10px] font-black font-montserrat tracking-tight text-slate-900">Celebrate!</h2>
-                      <p className="text-[7px] text-slate-405 mt-0.5 leading-normal">North Stand Refill hub is active. Scan your cup QR code to join in.</p>
+                      <h2 className="text-xs font-black font-montserrat tracking-tight text-slate-900">Celebrate!</h2>
+                      <p className="text-[8.5px] text-slate-500 mt-0.5 leading-normal">North Stand Refill hub is active. Scan your cup QR code to join in.</p>
                     </div>
 
                     {/* Large Counter Box */}
-                    <div className="bg-white border border-slate-150 p-2 rounded-xl flex flex-col items-center justify-center gap-0.5 shadow-2xs">
-                      <span className="text-lg font-black text-emerald-600 leading-none">12</span>
-                      <span className="text-[6px] text-slate-400 font-extrabold uppercase tracking-wider mt-0.5">cups recycled</span>
+                    <div className="bg-white border border-slate-150 p-3 rounded-2xl flex flex-col items-center justify-center gap-1 shadow-2xs">
+                      <span className="text-2xl font-black text-emerald-600 leading-none">12</span>
+                      <span className="text-[7.5px] text-slate-400 font-extrabold uppercase tracking-wider mt-0.5">cups recycled</span>
                     </div>
 
                     {/* Dual statistic cards */}
-                    <div className="grid grid-cols-2 gap-1.5">
-                      <div className="bg-white border border-slate-150 p-1.5 rounded-lg flex flex-col items-center">
-                        <span className="text-[10px] font-black text-slate-800">253</span>
-                        <span className="text-[5.5px] text-slate-400 font-bold uppercase">Points</span>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="bg-white border border-slate-150 p-2 rounded-xl flex flex-col items-center">
+                        <span className="text-xs font-black text-slate-800">253</span>
+                        <span className="text-[7px] text-slate-400 font-bold uppercase">Points</span>
                       </div>
-                      <div className="bg-white border border-slate-150 p-1.5 rounded-lg flex flex-col items-center">
-                        <span className="text-[10px] font-black text-slate-800">151</span>
-                        <span className="text-[5.5px] text-slate-400 font-bold uppercase">Offset</span>
+                      <div className="bg-white border border-slate-150 p-2 rounded-xl flex flex-col items-center">
+                        <span className="text-xs font-black text-slate-800">151</span>
+                        <span className="text-[7px] text-slate-400 font-bold uppercase">Offset</span>
                       </div>
                     </div>
 
                     {/* Wicked Sing-Along event card */}
-                    <div className="border border-slate-150 rounded-lg overflow-hidden bg-white shadow-2xs flex flex-col shrink-0">
-                      <div className="h-14 w-full relative bg-slate-900 flex items-center justify-center">
+                    <div className="border border-slate-150 rounded-xl overflow-hidden bg-white shadow-2xs flex flex-col shrink-0">
+                      <div className="h-20 w-full relative bg-slate-900 flex items-center justify-center">
                         <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/85 to-amber-950/85 z-10" />
-                        <div className="absolute inset-0 flex items-center justify-between px-3 z-20">
-                          <span className="text-[5.5px] text-emerald-400 font-black uppercase">Elphaba</span>
-                          <span className="text-[5.5px] text-pink-400 font-black uppercase">Glinda</span>
+                        <div className="absolute inset-0 flex items-center justify-between px-3.5 z-20">
+                          <span className="text-[7px] text-emerald-400 font-black uppercase">Elphaba</span>
+                          <span className="text-[7px] text-pink-400 font-black uppercase">Glinda</span>
                         </div>
-                        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=200" className="w-full h-full object-cover opacity-20 absolute" />
+                        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=300" className="w-full h-full object-cover opacity-20 absolute" />
                       </div>
-                      <div className="p-1.5 flex flex-col select-none">
-                        <span className="text-[7.5px] font-black text-slate-800 tracking-tight leading-tight">Wicked: Sing-Along</span>
+                      <div className="p-2 flex flex-col select-none">
+                        <span className="text-[9.5px] font-black text-slate-800 tracking-tight leading-tight">Wicked: Sing-Along</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Footer button */}
-                  <div className="p-2 border-t border-slate-100 bg-white shrink-0">
-                    <button className="w-full bg-emerald-600 text-white font-extrabold text-[8px] py-2 rounded-lg hover:bg-emerald-700 shadow-sm transition-all cursor-pointer text-center">
+                  <div className="p-3 border-t border-slate-100 bg-white shrink-0">
+                    <button className="w-full bg-emerald-600 text-white font-extrabold text-[10px] py-2.5 rounded-xl hover:bg-emerald-700 shadow-sm transition-all cursor-pointer text-center">
                       Buy Tickets
                     </button>
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Column 3: Live QR Code Badge & Scanner (Right Side) */}
-            <div className="bg-slate-50/80 border border-slate-200/80 rounded-2xl p-5 flex flex-col items-center justify-center gap-3.5 text-center shadow-2xs hover:border-slate-300 transition-colors">
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Mobile Preview QR</span>
-                <span className="text-xs font-black text-slate-900">Scan to Test Live Campaign</span>
-              </div>
-
-              {/* QR Code Container with Corner Markers */}
-              <div className="relative p-3 bg-white border border-slate-200 rounded-xl shadow-xs flex items-center justify-center group">
-                {/* Visual SVG QR Pattern */}
-                <svg className="size-32 text-slate-900" viewBox="0 0 100 100" fill="currentColor">
-                  {/* Outer Frame Squares */}
-                  <rect x="5" y="5" width="26" height="26" rx="4" fill="none" stroke="currentColor" strokeWidth="5"/>
-                  <rect x="12" y="12" width="12" height="12" rx="2"/>
-                  
-                  <rect x="69" y="5" width="26" height="26" rx="4" fill="none" stroke="currentColor" strokeWidth="5"/>
-                  <rect x="76" y="12" width="12" height="12" rx="2"/>
-                  
-                  <rect x="5" y="69" width="26" height="26" rx="4" fill="none" stroke="currentColor" strokeWidth="5"/>
-                  <rect x="12" y="76" width="12" height="12" rx="2"/>
-                  
-                  {/* Data Pattern Dots */}
-                  <rect x="38" y="8" width="6" height="6" rx="1"/>
-                  <rect x="48" y="8" width="6" height="6" rx="1"/>
-                  <rect x="58" y="8" width="6" height="6" rx="1"/>
-                  
-                  <rect x="38" y="18" width="6" height="6" rx="1"/>
-                  <rect x="58" y="18" width="6" height="6" rx="1"/>
-                  
-                  <rect x="8" y="38" width="6" height="6" rx="1"/>
-                  <rect x="18" y="38" width="6" height="6" rx="1"/>
-                  <rect x="28" y="38" width="6" height="6" rx="1"/>
-                  <rect x="38" y="38" width="6" height="6" rx="1"/>
-                  <rect x="48" y="38" width="6" height="6" rx="1"/>
-                  <rect x="68" y="38" width="6" height="6" rx="1"/>
-                  <rect x="78" y="38" width="6" height="6" rx="1"/>
-                  <rect x="88" y="38" width="6" height="6" rx="1"/>
-                  
-                  <rect x="38" y="48" width="6" height="6" rx="1"/>
-                  <rect x="58" y="48" width="6" height="6" rx="1"/>
-                  <rect x="78" y="48" width="6" height="6" rx="1"/>
-                  <rect x="88" y="48" width="6" height="6" rx="1"/>
-                  
-                  <rect x="8" y="58" width="6" height="6" rx="1"/>
-                  <rect x="28" y="58" width="6" height="6" rx="1"/>
-                  <rect x="38" y="58" width="6" height="6" rx="1"/>
-                  <rect x="48" y="58" width="6" height="6" rx="1"/>
-                  <rect x="68" y="58" width="6" height="6" rx="1"/>
-                  
-                  <rect x="38" y="69" width="6" height="6" rx="1"/>
-                  <rect x="58" y="69" width="6" height="6" rx="1"/>
-                  <rect x="78" y="69" width="6" height="6" rx="1"/>
-                  
-                  <rect x="38" y="79" width="6" height="6" rx="1"/>
-                  <rect x="48" y="79" width="6" height="6" rx="1"/>
-                  <rect x="68" y="79" width="6" height="6" rx="1"/>
-                  <rect x="88" y="79" width="6" height="6" rx="1"/>
-                  
-                  <rect x="38" y="89" width="6" height="6" rx="1"/>
-                  <rect x="58" y="89" width="6" height="6" rx="1"/>
-                  <rect x="78" y="89" width="6" height="6" rx="1"/>
-                </svg>
-
-                {/* Central Circulayo Logo Badge */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="size-7 bg-blue-600 rounded-lg border-2 border-white shadow-xs flex items-center justify-center text-white">
-                    <QrCode className="size-4 stroke-[2.5]" />
-                  </div>
-                </div>
-              </div>
-
-              <span className="text-[10px] text-slate-400 font-semibold max-w-[180px]">
-                Point your mobile camera to launch the live preview on your phone
-              </span>
             </div>
 
           </div>
