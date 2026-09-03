@@ -276,7 +276,7 @@ export default function App() {
               exit={{ opacity: 0 }}
               className="flex-1 overflow-y-auto"
             >
-              <main className="p-6 md:p-8 max-w-7xl w-full mx-auto flex flex-col gap-8">
+              <main className="p-6 md:p-8 w-full max-w-[1440px] mr-auto flex flex-col gap-8 text-left">
                 
                 {/* Home View */}
                 {activeTab === 'home' && (
@@ -379,7 +379,7 @@ export default function App() {
                   <div className="flex flex-col gap-8">
                     
                     {/* Featured Template Banner */}
-                    <div className="bg-white border border-[#e2e8f0] rounded-[24px] p-6 shadow-xs flex flex-col md:flex-row gap-8 items-center relative overflow-hidden">
+                    <div className="bg-white border border-[#e2e8f0] rounded-[24px] p-6 shadow-xs flex flex-col md:flex-row gap-8 items-start md:items-center text-left relative overflow-hidden">
                       {/* Left: Mobile mockup frame */}
                       <div className="w-[140px] h-[230px] border-[6px] border-[#0f172a] rounded-[32px] bg-white relative shadow-lg flex items-center justify-center shrink-0">
                         {/* Notch */}
@@ -495,7 +495,7 @@ export default function App() {
                           return (
                             <div 
                               key={tmpl.id}
-                              className="bg-white border border-[#e2e8f0] rounded-[20px] p-0.5 flex flex-col justify-between overflow-hidden shadow-xs hover:border-slate-355 hover:shadow-xs transition-all"
+                              className="bg-white border border-[#e2e8f0] rounded-[20px] p-0.5 flex flex-col justify-between overflow-hidden shadow-xs hover:border-slate-355 hover:shadow-xs transition-all text-left"
                             >
                               {/* Top Preview Area with styled background */}
                               <div 
@@ -525,7 +525,7 @@ export default function App() {
                               </div>
 
                               {/* Bottom Details Info */}
-                              <div className="p-3.5 pb-4 flex flex-col">
+                              <div className="p-3.5 pb-4 flex flex-col text-left">
                                 <h3 className="text-xs font-extrabold text-[#0f172a] truncate">
                                   {tmpl.title}
                                 </h3>

@@ -43,12 +43,12 @@ export default function GridCard({ card, layout, onSelect, onViewAnalytics }) {
         whileHover={{ y: -6, scale: 1.01 }}
         onClick={() => onSelect(card)}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="bg-white rounded-2xl overflow-hidden border border-brand-border flex flex-col h-full shadow-sm hover:shadow-xl hover:border-slate-300 transition-all select-none cursor-pointer relative"
+        className="bg-white rounded-2xl overflow-hidden border border-brand-border flex flex-col h-full shadow-sm hover:shadow-xl hover:border-slate-300 transition-all select-none cursor-pointer relative text-left"
       >
         {/* Cover Preview Image Container */}
         <div 
           style={{ backgroundImage: `linear-gradient(135deg, ${gradientStart}, ${gradientEnd})` }}
-          className="h-60 relative flex flex-col justify-between p-4 text-white group overflow-hidden"
+          className="h-60 relative flex flex-col justify-between p-4 text-white group overflow-hidden text-left"
         >
           {/* Ambient Mesh Glow Effect */}
           <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/40 via-transparent to-transparent pointer-events-none"></div>
@@ -71,7 +71,7 @@ export default function GridCard({ card, layout, onSelect, onViewAnalytics }) {
           </div>
 
           {/* Bottom Row: Text overlay */}
-          <div className="z-10 mt-auto">
+          <div className="z-10 mt-auto text-left">
             {visitors && (
               <span className="text-[10px] font-bold text-white/80 bg-black/20 backdrop-blur-sm px-2 py-0.5 rounded-md">
                 {visitors} views
@@ -84,8 +84,8 @@ export default function GridCard({ card, layout, onSelect, onViewAnalytics }) {
         </div>
 
         {/* Info Container */}
-        <div className="p-4 flex flex-col justify-between flex-1 gap-3">
-          <div className="flex flex-col gap-1.5">
+        <div className="p-4 flex flex-col justify-between flex-1 gap-3 text-left">
+          <div className="flex flex-col gap-1.5 text-left">
             <h4 className="text-sm font-bold text-slate-800 tracking-tight truncate">
               {subtitle}
             </h4>
