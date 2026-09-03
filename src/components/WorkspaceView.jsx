@@ -1492,86 +1492,69 @@ export default function WorkspaceView() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  className="absolute left-10 top-1/2 -translate-y-1/2 w-64 bg-white rounded-2xl border border-slate-100 shadow-2xl p-5 flex flex-col gap-4 select-none z-50"
+                  className="absolute left-10 lg:left-14 top-1/2 -translate-y-1/2 flex flex-col items-center gap-3.5 select-none z-50"
                 >
-                  {/* Header */}
-                  <div className="flex items-center">
-                    <span className="font-montserrat font-bold text-xs text-slate-800 uppercase tracking-wider">Share Options</span>
-                  </div>
+                  {/* High fidelity simulated QR Code directly on canvas without white card background */}
+                  <div className="size-36 flex flex-col justify-between relative p-1">
+                    {/* Standard QR Code corner blocks */}
+                    <div className="absolute top-1 left-1 size-8 border-4 border-slate-900 flex items-center justify-center">
+                      <div className="size-3 bg-slate-900" />
+                    </div>
+                    <div className="absolute top-1 right-1 size-8 border-4 border-slate-900 flex items-center justify-center">
+                      <div className="size-3 bg-slate-900" />
+                    </div>
+                    <div className="absolute bottom-1 left-1 size-8 border-4 border-slate-900 flex items-center justify-center">
+                      <div className="size-3 bg-slate-900" />
+                    </div>
+                    
+                    {/* Smaller positioning box */}
+                    <div className="absolute bottom-3 right-3 size-4.5 border-2 border-slate-900 flex items-center justify-center">
+                      <div className="size-1.5 bg-slate-900" />
+                    </div>
 
-                  {/* Share Link */}
-                  <div className="flex flex-col gap-1.5">
-                    <span className="text-[8px] font-extrabold text-slate-450 uppercase tracking-wider">Share Link</span>
-                    <div className="flex items-center gap-1 bg-slate-50 border border-slate-150 p-1 rounded-xl">
-                      <div className="flex-1 text-[8.5px] font-bold text-slate-500 truncate pl-1.5 select-all">
-                        https://preview.circulayo.com/d/welcome-default
-                      </div>
-                      <button 
-                        onClick={() => {
-                          navigator.clipboard.writeText("https://preview.circulayo.com/d/welcome-default");
-                          setCopied(true);
-                          setTimeout(() => setCopied(false), 2000);
-                        }}
-                        className={`px-3 py-1.5 rounded-lg text-[9px] font-black flex items-center gap-1 transition-all cursor-pointer ${
-                          copied 
-                            ? 'bg-emerald-500 text-white' 
-                            : 'bg-brand-blue text-white hover:bg-brand-blue/95'
-                        }`}
-                      >
-                        {copied ? <Check className="size-2.5" /> : null}
-                        <span>{copied ? 'Copied' : 'Copy'}</span>
-                      </button>
+                    {/* Pixel pattern grid fill */}
+                    <div className="w-full h-full opacity-90 flex flex-wrap gap-[1.5px] p-0.5 justify-center items-center">
+                      {[...Array(64)].map((_, idx) => {
+                        const row = Math.floor(idx / 8);
+                        const col = idx % 8;
+                        const isCorner = (row < 3 && col < 3) || (row < 3 && col > 4) || (row > 4 && col < 3);
+                        
+                        return (
+                          <div 
+                            key={idx} 
+                            className={`size-[10px] rounded-[1px] ${
+                              isCorner 
+                                ? 'bg-transparent' 
+                                : (idx % 2 === 0 || idx % 5 === 1 || idx % 7 === 3) 
+                                  ? 'bg-slate-900' 
+                                  : 'bg-transparent'
+                            }`}
+                          />
+                        );
+                      })}
                     </div>
                   </div>
 
-                  {/* QR Code - Clean without background rectangle */}
-                  <div className="flex flex-col items-center gap-2.5 pt-1">
-                    <span className="text-[8px] font-extrabold text-slate-450 uppercase tracking-wider w-full text-left">QR Code</span>
-                    
-                    {/* High fidelity simulated QR Code directly on card */}
-                    <div className="size-32 bg-white flex flex-col justify-between relative p-1">
-                      {/* Standard QR Code corner blocks */}
-                      <div className="absolute top-1 left-1 size-7 border-4 border-slate-900 flex items-center justify-center">
-                        <div className="size-2.5 bg-slate-900" />
-                      </div>
-                      <div className="absolute top-1 right-1 size-7 border-4 border-slate-900 flex items-center justify-center">
-                        <div className="size-2.5 bg-slate-900" />
-                      </div>
-                      <div className="absolute bottom-1 left-1 size-7 border-4 border-slate-900 flex items-center justify-center">
-                        <div className="size-2.5 bg-slate-900" />
-                      </div>
-                      
-                      {/* Smaller positioning box */}
-                      <div className="absolute bottom-3 right-3 size-4 border-2 border-slate-900 flex items-center justify-center">
-                        <div className="size-1 bg-slate-900" />
-                      </div>
-
-                      {/* Pixel pattern grid fill */}
-                      <div className="w-full h-full opacity-90 flex flex-wrap gap-[1px] p-0.5 justify-center items-center">
-                        {[...Array(64)].map((_, idx) => {
-                          const row = Math.floor(idx / 8);
-                          const col = idx % 8;
-                          const isCorner = (row < 3 && col < 3) || (row < 3 && col > 4) || (row > 4 && col < 3);
-                          
-                          return (
-                            <div 
-                              key={idx} 
-                              className={`size-[9px] rounded-[1px] ${
-                                isCorner 
-                                  ? 'bg-transparent' 
-                                  : (idx % 2 === 0 || idx % 5 === 1 || idx % 7 === 3) 
-                                    ? 'bg-slate-900' 
-                                    : 'bg-transparent'
-                              }`}
-                            />
-                          );
-                        })}
-                      </div>
-                    </div>
-                    
-                    <span className="text-[7.5px] text-slate-400 text-center font-bold break-all leading-normal max-w-[200px] select-all">
-                      https://preview.circulayo.com/d/welcome-default
+                  {/* Share link pill */}
+                  <div className="flex items-center gap-1.5 bg-white/90 border border-slate-200/80 px-2.5 py-1 rounded-full shadow-2xs">
+                    <span className="text-[9px] font-bold text-slate-500 max-w-[125px] truncate select-all">
+                      preview.circulayo.com
                     </span>
+                    <button 
+                      onClick={() => {
+                        navigator.clipboard.writeText("https://preview.circulayo.com/d/welcome-default");
+                        setCopied(true);
+                        setTimeout(() => setCopied(false), 2000);
+                      }}
+                      className={`px-3 py-1 rounded-full text-[9px] font-black flex items-center gap-1 transition-all cursor-pointer ${
+                        copied 
+                          ? 'bg-emerald-500 text-white' 
+                          : 'bg-brand-blue text-white hover:bg-brand-blue/95'
+                      }`}
+                    >
+                      {copied ? <Check className="size-2.5" /> : null}
+                      <span>{copied ? 'Copied' : 'Copy'}</span>
+                    </button>
                   </div>
                 </motion.div>
               )}
