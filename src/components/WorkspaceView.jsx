@@ -1489,20 +1489,14 @@ export default function WorkspaceView() {
             <AnimatePresence>
               {isPreviewMode && showShareOptions && (
                 <motion.div
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  className="absolute right-10 top-1/2 -translate-y-1/2 w-64 bg-white rounded-2xl border border-slate-100 shadow-2xl p-5 flex flex-col gap-4 select-none z-50"
+                  exit={{ opacity: 0, x: -20 }}
+                  className="absolute left-10 top-1/2 -translate-y-1/2 w-64 bg-white rounded-2xl border border-slate-100 shadow-2xl p-5 flex flex-col gap-4 select-none z-50"
                 >
                   {/* Header */}
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center">
                     <span className="font-montserrat font-bold text-xs text-slate-800 uppercase tracking-wider">Share Options</span>
-                    <button 
-                      onClick={() => setShowShareOptions(false)}
-                      className="text-slate-400 hover:text-slate-700 transition-colors cursor-pointer"
-                    >
-                      <X className="size-3.5" />
-                    </button>
                   </div>
 
                   {/* Share Link */}
@@ -1530,55 +1524,54 @@ export default function WorkspaceView() {
                     </div>
                   </div>
 
-                  {/* QR Code */}
-                  <div className="flex flex-col gap-1.5">
-                    <span className="text-[8px] font-extrabold text-slate-450 uppercase tracking-wider">QR Code</span>
-                    <div className="bg-slate-50 border border-slate-100 p-3 rounded-xl flex flex-col items-center gap-2">
-                      {/* High fidelity simulated QR Code */}
-                      <div className="size-28 bg-white border border-slate-200/50 p-2 rounded-lg flex flex-col justify-between relative shadow-xs">
-                        {/* Standard QR Code corner blocks */}
-                        <div className="absolute top-2 left-2 size-7 border-4 border-slate-900 flex items-center justify-center">
-                          <div className="size-2.5 bg-slate-900" />
-                        </div>
-                        <div className="absolute top-2 right-2 size-7 border-4 border-slate-900 flex items-center justify-center">
-                          <div className="size-2.5 bg-slate-900" />
-                        </div>
-                        <div className="absolute bottom-2 left-2 size-7 border-4 border-slate-900 flex items-center justify-center">
-                          <div className="size-2.5 bg-slate-900" />
-                        </div>
-                        
-                        {/* Smaller positioning box */}
-                        <div className="absolute bottom-4 right-4 size-4 border-2 border-slate-900 flex items-center justify-center">
-                          <div className="size-1 bg-slate-900" />
-                        </div>
-
-                        {/* Pixel pattern grid fill */}
-                        <div className="w-full h-full opacity-90 flex flex-wrap gap-[1px] p-0.5 justify-center items-center">
-                          {[...Array(64)].map((_, idx) => {
-                            const row = Math.floor(idx / 8);
-                            const col = idx % 8;
-                            const isCorner = (row < 3 && col < 3) || (row < 3 && col > 4) || (row > 4 && col < 3);
-                            
-                            return (
-                              <div 
-                                key={idx} 
-                                className={`size-[9px] rounded-[1px] ${
-                                  isCorner 
-                                    ? 'bg-transparent' 
-                                    : (idx % 2 === 0 || idx % 5 === 1 || idx % 7 === 3) 
-                                      ? 'bg-slate-900' 
-                                      : 'bg-transparent'
-                                }`}
-                              />
-                            );
-                          })}
-                        </div>
+                  {/* QR Code - Clean without background rectangle */}
+                  <div className="flex flex-col items-center gap-2.5 pt-1">
+                    <span className="text-[8px] font-extrabold text-slate-450 uppercase tracking-wider w-full text-left">QR Code</span>
+                    
+                    {/* High fidelity simulated QR Code directly on card */}
+                    <div className="size-32 bg-white flex flex-col justify-between relative p-1">
+                      {/* Standard QR Code corner blocks */}
+                      <div className="absolute top-1 left-1 size-7 border-4 border-slate-900 flex items-center justify-center">
+                        <div className="size-2.5 bg-slate-900" />
+                      </div>
+                      <div className="absolute top-1 right-1 size-7 border-4 border-slate-900 flex items-center justify-center">
+                        <div className="size-2.5 bg-slate-900" />
+                      </div>
+                      <div className="absolute bottom-1 left-1 size-7 border-4 border-slate-900 flex items-center justify-center">
+                        <div className="size-2.5 bg-slate-900" />
                       </div>
                       
-                      <span className="text-[7px] text-slate-400 text-center font-bold break-all leading-normal max-w-[185px] select-all">
-                        https://preview.circulayo.com/d/welcome-default
-                      </span>
+                      {/* Smaller positioning box */}
+                      <div className="absolute bottom-3 right-3 size-4 border-2 border-slate-900 flex items-center justify-center">
+                        <div className="size-1 bg-slate-900" />
+                      </div>
+
+                      {/* Pixel pattern grid fill */}
+                      <div className="w-full h-full opacity-90 flex flex-wrap gap-[1px] p-0.5 justify-center items-center">
+                        {[...Array(64)].map((_, idx) => {
+                          const row = Math.floor(idx / 8);
+                          const col = idx % 8;
+                          const isCorner = (row < 3 && col < 3) || (row < 3 && col > 4) || (row > 4 && col < 3);
+                          
+                          return (
+                            <div 
+                              key={idx} 
+                              className={`size-[9px] rounded-[1px] ${
+                                isCorner 
+                                  ? 'bg-transparent' 
+                                  : (idx % 2 === 0 || idx % 5 === 1 || idx % 7 === 3) 
+                                    ? 'bg-slate-900' 
+                                    : 'bg-transparent'
+                              }`}
+                            />
+                          );
+                        })}
+                      </div>
                     </div>
+                    
+                    <span className="text-[7.5px] text-slate-400 text-center font-bold break-all leading-normal max-w-[200px] select-all">
+                      https://preview.circulayo.com/d/welcome-default
+                    </span>
                   </div>
                 </motion.div>
               )}
