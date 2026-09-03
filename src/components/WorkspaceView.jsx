@@ -1058,7 +1058,7 @@ export default function WorkspaceView() {
         </AnimatePresence>
 
         {/* Middle Column: Visual Canvas Area */}
-        <div className="flex-1 flex flex-col overflow-hidden bg-[#f8fafc] bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px]">
+        <div className="flex-1 flex flex-col overflow-hidden bg-[#f3f4f6]">
           
           {/* Canvas Sub-Header containing all action controls */}
           <div className="bg-white border-b border-brand-border px-6 py-2.5 flex items-center justify-between shrink-0 select-none">
@@ -1584,32 +1584,97 @@ export default function WorkspaceView() {
               )}
             </AnimatePresence>
             
-            {/* Center Phone Container */}
-            <div className="relative w-[340px] sm:w-[350px] h-[680px] flex items-center justify-center">
+            {/* Center relative deck container */}
+            <div className="relative w-[340px] h-[600px] flex items-center justify-start">
               {pages.map((page, i) => {
-                if (i !== activePageIndex) return null;
-                const isActive = true;
+                // Calculate position relative to active index
+                let diff = i - activePageIndex;
+                let isActive = diff === 0;
+                
+                // 3D Stack Layout Style Parameters
+                let x = 0;
+                let y = 0;
+                let scale = 1;
+                let zIndex = 30 - Math.abs(diff) * 5;
+                let opacity = 1;
+                let pointerEvents = 'auto';
+                
+                if (isActive) {
+                  x = 0;
+                  y = 0;
+                  scale = 1;
+                  opacity = 1;
+                } else if (diff > 0) {
+                  // Stacked behind on the right
+                  x = diff * 70; // Shift right by 70px per stack level
+                  y = diff * -10; // Shift up slightly
+                  scale = 1 - diff * 0.08; // Scale down by 8% per stack level
+                  opacity = Math.max(0.4, 1 - diff * 0.22);
+                } else {
+                  // Passed screens slide left and fade
+                  x = diff * 160;
+                  y = 0;
+                  scale = 0.85;
+                  opacity = 0;
+                }
                 
                 return (
-                  <div
+                  <motion.div
                     key={page.id}
-                    className="relative w-full h-full select-none"
+                    style={{
+                      position: 'absolute',
+                      left: 0,
+                      top: 0,
+                      width: '300px',
+                      height: '600px',
+                      zIndex: zIndex,
+                      pointerEvents: pointerEvents
+                    }}
+                    animate={{
+                      x: x,
+                      y: y,
+                      scale: scale,
+                      opacity: opacity
+                    }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 280,
+                      damping: 24
+                    }}
+                    onClick={() => {
+                      if (!isActive) {
+                        setActivePageIndex(i);
+                      }
+                    }}
+                    className="cursor-pointer select-none origin-bottom-left"
                   >
-                    {/* Page Indicator and Title Above Screen */}
-                    <div className="absolute -top-7 left-0 right-0 flex items-center justify-between px-2 font-sans select-none">
-                      <span className="text-[11px] font-extrabold truncate max-w-[200px] text-slate-900">
-                        {page.title || `Screen ${i + 1}`}
-                      </span>
-                      <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-brand-blue text-white shadow-xs">
-                        {i + 1}/{pages.length}
-                      </span>
+                    {/* Page Number Indicator Above Right Corner */}
+                    <div 
+                      className={`absolute -top-6 right-2 font-sans font-bold text-[11px] tracking-wide transition-colors duration-300 ${
+                        isActive ? 'text-brand-blue font-extrabold' : 'text-slate-400 font-bold'
+                      }`}
+                    >
+                      {i + 1}/{pages.length}
                     </div>
 
-                    {/* Simulated Phone Shell */}
-                    <div className="w-full h-full bg-black rounded-[46px] shadow-2xl p-2 border-[3px] border-slate-900 flex flex-col relative shrink-0 transition-all duration-300">
+                    {/* Background Transparent click capture for background screens */}
+                    {!isActive && (
+                      <div className="absolute inset-0 bg-transparent rounded-[32px] z-50 cursor-pointer" />
+                    )}
+
+                    {/* Simulated Phone Shell or Card Container */}
+                    <div className={isActive 
+                      ? "w-full h-full bg-black rounded-[40px] shadow-2xl p-1.5 border-2 border-slate-900 flex flex-col relative shrink-0 transition-all duration-300"
+                      : "w-full h-full bg-white rounded-[32px] overflow-hidden flex flex-col justify-between relative shadow-lg border border-slate-200/60 opacity-90 shrink-0 transition-all duration-300"
+                    }>
                       
+
+
                       {/* Screen Content Wrapper */}
-                      <div className="flex-1 bg-white rounded-[38px] overflow-hidden flex flex-col justify-between relative shadow-inner">
+                      <div className={isActive 
+                        ? "flex-1 bg-white rounded-[32px] overflow-hidden flex flex-col justify-between relative shadow-inner"
+                        : "flex-1 flex flex-col justify-between relative h-full min-h-0"
+                      }>
                         
                         {/* Interactive Sidenav Overlay */}
                         <AnimatePresence>
@@ -2292,36 +2357,23 @@ export default function WorkspaceView() {
                       </div>
                       
                       {/* Bottom Home Indicator */}
-                      <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-28 h-1 bg-white/20 rounded-full animate-pulse" />
+                      {isActive && (
+                        <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-28 h-1 bg-white/20 rounded-full animate-pulse" />
+                      )}
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
 
-            {/* Previous screen pagination button */}
-            {pages.length > 1 && (
-              <button 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setActivePageIndex(prev => (prev - 1 + pages.length) % pages.length);
-                }}
-                className="absolute right-[calc(50%+190px)] top-[350px] -translate-y-1/2 size-9 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-700 hover:text-slate-900 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer z-40"
-                title="Previous Screen"
-              >
-                <ChevronRight className="size-4 stroke-[2.5] rotate-180" />
-              </button>
-            )}
-
-            {/* Next screen pagination button */}
+            {/* Next arrow pagination button placed perfectly next to the phone stack */}
             {pages.length > 1 && (
               <button 
                 onClick={(e) => {
                   e.stopPropagation();
                   setActivePageIndex(prev => (prev + 1) % pages.length);
                 }}
-                className="absolute left-[calc(50%+190px)] top-[350px] -translate-y-1/2 size-9 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-700 hover:text-slate-900 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer z-40"
-                title="Next Screen"
+                className="absolute left-[calc(50%+160px)] top-[350px] -translate-y-1/2 size-9 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-700 hover:text-slate-900 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer z-40"
               >
                 <ChevronRight className="size-4 stroke-[2.5]" />
               </button>
