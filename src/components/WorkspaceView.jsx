@@ -2349,7 +2349,7 @@ export default function WorkspaceView() {
                   e.stopPropagation();
                   setActivePageIndex(prev => (prev - 1 + pages.length) % pages.length);
                 }}
-                className="absolute right-[calc(50%+160px)] top-[350px] -translate-y-1/2 size-9 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-700 hover:text-slate-900 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer z-40"
+                className="absolute left-[calc(50%-236px)] top-[350px] -translate-y-1/2 size-9 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-700 hover:text-slate-900 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer z-40"
                 title="Previous Screen"
               >
                 <ChevronLeft className="size-4 stroke-[2.5]" />
